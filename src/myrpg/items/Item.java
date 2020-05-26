@@ -1,7 +1,7 @@
 package myrpg.items;
 
 import myrpg.effects.IEffect;
-import myrpg.items.gear.GearSlots;
+import myrpg.items.gear.GearSlotType;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public abstract class Item implements IItem{
     }
 
     @Override
-    public List<GearSlots> getPossibleSlots() {
+    public List<GearSlotType> getPossibleSlots() {
         return null;
     }
 

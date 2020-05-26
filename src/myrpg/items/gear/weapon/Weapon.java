@@ -4,7 +4,6 @@ import myrpg.effects.IEffect;
 import myrpg.items.Equippable;
 import myrpg.items.ItemType;
 import myrpg.items.gear.GearConverter;
-import myrpg.items.gear.GearSlots;
 
 import java.util.List;
 

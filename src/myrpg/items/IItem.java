@@ -1,6 +1,6 @@
 package myrpg.items;
 
-import myrpg.items.gear.GearSlots;
+import myrpg.items.gear.GearSlotType;
 import myrpg.units.IUnit;
 import myrpg.effects.IEffect;
 
@@ -15,5 +15,5 @@ public interface IItem {
     boolean isEquipped(IItem item);
     int getItemLevel();
     List<IEffect> getEffectsList();
-    List<GearSlots> getPossibleSlots();
+    List<GearSlotType> getPossibleSlots();
 }

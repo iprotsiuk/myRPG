@@ -4,8 +4,8 @@ import myrpg.items.IItem;
 
 public interface IGear {
 
-    boolean isSlotBusy(GearSlots gearSlot);
-    IItem unequip(GearSlots gearSlot);
-    boolean equip(GearSlots gearSlot, IItem item);
+    boolean isSlotBusy(GearSlotType gearSlot);
+    IItem unequip(GearSlotType gearSlot);
+    boolean equip(GearSlotType gearSlot, IItem item);
 
 }

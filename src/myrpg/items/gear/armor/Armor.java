@@ -2,7 +2,6 @@ package myrpg.items.gear.armor;
 
 import myrpg.items.*;
 import myrpg.items.gear.GearConverter;
-import myrpg.items.gear.GearSlots;
 import myrpg.effects.IEffect;
 
 import java.util.List;

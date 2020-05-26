@@ -7,7 +7,7 @@ import myrpg.items.gear.weapon.WeaponSlots;
 public class GearConverter {
 
 
-    public static AccesoireSlots convertToAccessoire(GearSlots gearSlot){
+    public static AccesoireSlots convertToAccessories(GearSlotType gearSlot){
         switch (gearSlot) {
             case lFinger: return AccesoireSlots.lFinger;
             case rFinger: return AccesoireSlots.rFinger;
@@ -18,7 +18,7 @@ public class GearConverter {
     }
 
 
-    public static WeaponSlots convertToWeapon(GearSlots gearSlot){
+    public static WeaponSlots convertToWeapon(GearSlotType gearSlot){
         switch (gearSlot) {
             case lHand: return WeaponSlots.lHand;
             case rHand: return WeaponSlots.rHand;
@@ -27,7 +27,7 @@ public class GearConverter {
         }
     }
 
-    public static ArmorSlots convertToArmor(GearSlots gearSlot){
+    public static ArmorSlots convertToArmor(GearSlotType gearSlot){
         switch (gearSlot){
             case body: return ArmorSlots.body;
             case boots: return ArmorSlots.boots;
@@ -37,31 +37,31 @@ public class GearConverter {
     }
 
 
-    public static GearSlots convertToGear(AccesoireSlots accesoireSlot){
+    public static GearSlotType convertToGear(AccesoireSlots accesoireSlot){
         switch (accesoireSlot) {
-            case trinket: return GearSlots.trinket;
-            case neck: return GearSlots.neck;
-            case rFinger: return GearSlots.rFinger;
-            case lFinger: return GearSlots.lFinger;
-            default: return GearSlots.trinket;
+            case trinket: return GearSlotType.trinket;
+            case neck: return GearSlotType.neck;
+            case rFinger: return GearSlotType.rFinger;
+            case lFinger: return GearSlotType.lFinger;
+            default: return GearSlotType.trinket;
         }
     }
 
-    public static GearSlots convertToGear(ArmorSlots armorSlot){
+    public static GearSlotType convertToGear(ArmorSlots armorSlot){
         switch (armorSlot){
-            case head: return GearSlots.head;
-            case body: return GearSlots.body;
-            case boots: return GearSlots.boots;
-            default: return GearSlots.head;
+            case head: return GearSlotType.head;
+            case body: return GearSlotType.body;
+            case boots: return GearSlotType.boots;
+            default: return GearSlotType.head;
         }
     }
 
-    public static GearSlots convertToGear(WeaponSlots weaponSlot){
+    public static GearSlotType convertToGear(WeaponSlots weaponSlot){
         switch (weaponSlot){
-            case rHand: return GearSlots.rHand;
-            case lHand: return GearSlots.lHand;
-            case twoHand: return GearSlots.twoHand;
-            default: return GearSlots.rHand;
+            case rHand: return GearSlotType.rHand;
+            case lHand: return GearSlotType.lHand;
+            case twoHand: return GearSlotType.twoHand;
+            default: return GearSlotType.rHand;
         }
     }
 
