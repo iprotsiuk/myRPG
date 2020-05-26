@@ -1,6 +1,6 @@
 package myrpg.effects;
 
-import myrpg.IUnit;
+import myrpg.units.IUnit;
 
 public interface IEffect {
     boolean addEffect(IUnit unit);

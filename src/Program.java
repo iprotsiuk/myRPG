@@ -1,7 +1,8 @@
-import myrpg.*;
-import myrpg.classes.Archer;
-import myrpg.classes.IClass;
-import myrpg.classes.Warrior;
+import myrpg.units.IUnit;
+import myrpg.units.Unit;
+import myrpg.units.classes.Archer;
+import myrpg.units.classes.IClass;
+import myrpg.units.classes.Warrior;
 import myrpg.races.Human;
 import myrpg.races.IRace;
 import myrpg.races.Undead;

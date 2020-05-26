@@ -1,13 +1,13 @@
 package myrpg.races;
 
-import myrpg.classes.AttackType;
+import myrpg.units.classes.AttackType;
 
 public class Human implements IRace {
 
     @Override
     public int getBonusDamagePercent(AttackType attackType) {
         switch (attackType){
-            case spellDamage:
+            case MagicalDamage:
                 return 0;
             case rangedPhysicalDamage:
                 return 5;

@@ -1,6 +1,6 @@
 package myrpg.races;
 
-import myrpg.classes.AttackType;
+import myrpg.units.classes.AttackType;
 
 public class Undead implements IRace {
 
@@ -8,7 +8,7 @@ public class Undead implements IRace {
     @Override
     public int getBonusDamagePercent(AttackType attackType) {
         switch (attackType){
-            case spellDamage:
+            case MagicalDamage:
                 return 5;
             case rangedPhysicalDamage:
                 return 0;

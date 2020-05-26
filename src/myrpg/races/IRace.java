@@ -1,6 +1,6 @@
 package myrpg.races;
 
-import myrpg.classes.AttackType;
+import myrpg.units.classes.AttackType;
 
 // Humans+5dmg/Undead+5hp
 public interface IRace {
