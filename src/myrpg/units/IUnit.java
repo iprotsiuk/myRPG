@@ -4,6 +4,7 @@ import myrpg.items.gear.IGear;
 import myrpg.units.classes.IClass;
 import myrpg.effects.Effect;
 import myrpg.races.IRace;
+import myrpg.units.inventory.IInventory;
 
 import java.util.List;
 
@@ -21,7 +22,6 @@ public interface IUnit {
     int getCurrentAttack(); //including buffs;
     int getCurrentArmor(); //including buffs;
     void receiveDamage(int val);
-    void move(int x, int y);
     IRace getRace();
     IClass _getClass();
     boolean isDead();
@@ -36,6 +36,11 @@ public interface IUnit {
     boolean increaseMagicalResistance(int val);
     boolean decreaseMagicalResistance(int val);
     IGear getGear();
-    IGear setGear();
+    void setGear(IGear gear);
+    void setInventory(IInventory inventory);
+    IInventory getInventory();
+    int getExpCost();
+    int getLevel();
+
 
     }

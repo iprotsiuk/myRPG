@@ -1,16 +1,15 @@
-package myrpg.units;
+package myrpg.units.inventory;
 
 import myrpg.items.IItem;
 import myrpg.items.ItemType;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Inventory implements IInventory {
     int size;
 
-    List<IItem> inventory = new ArrayList<>();
 
+    List<IItem> inventory = new ArrayList<>();
 
     public Inventory (int size){
         this.size = size;
@@ -35,6 +34,7 @@ public class Inventory implements IInventory {
             inventory.remove(slotNumber);
             return true;
         }
+        System.out.println("this slot is empty");
         return false;
     }
 
@@ -45,8 +45,13 @@ public class Inventory implements IInventory {
 
     @Override
     public void sort(SortType sortType) {
-
+        InventorySorter inventorySorter = new InventorySorter(inventory);
+        if(sortType == SortType.itemType)
+            inventorySorter.sortByItemType();
+        else if(sortType == SortType.name)
+            inventorySorter.sortByName();
     }
+
 
     @Override
     public int getEmptySpace() {
@@ -83,10 +88,6 @@ public class Inventory implements IInventory {
         }
         return filteredInventory;
     }
-
-
-
-
 
 
     private int findFirstEmptySlot(){

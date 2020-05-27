@@ -11,9 +11,11 @@ import java.util.List;
 
 public abstract class Trinket extends Accessories {
     static List<GearSlotType> possibleSlots = new ArrayList<>();
-    static{
+
+    static {
         possibleSlots.add(GearSlotType.trinket);
     }
+
     public Trinket(AccesoireSlots accessoriesSlot, ItemType itemType, String itemName, int itemLevel, boolean isUnique, List<IEffect> IEffectList) {
         super(accessoriesSlot, itemType, itemName, itemLevel, isUnique, IEffectList);
     }

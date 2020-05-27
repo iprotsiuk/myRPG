@@ -4,6 +4,7 @@ import myrpg.items.gear.IGear;
 import myrpg.units.classes.IClass;
 import myrpg.effects.Effect;
 import myrpg.races.IRace;
+import myrpg.units.inventory.IInventory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,13 @@ public class Unit implements IUnit{
     IGear gear;
     IInventory inventory;
 
+    int expCost;
+
+    int level;
     int speed;
     int damage;
     IRace _race;
     IClass _class;
-    IMove move;
     IUnit focusedTarget;
     int baseHp;
     int magicalResistance;
@@ -27,15 +30,19 @@ public class Unit implements IUnit{
     List<Effect> effectList = new ArrayList<Effect>();
 
 
+
+
     boolean isDead = false;
     static  int countCreate = 0;
     static int countDead = 0;
 
-    public Unit(IRace race, IClass _class) {
+    public Unit(IRace race, IClass _class, int expCost, int level) {
         this._race = race;
         this._class = _class;
         this.baseHp = _class.getBaseHp()+_race.getBonusHp();
         this.currentHp = this.baseHp;
+        this.expCost = expCost;
+        this.level = level;
         countCreate++;
     }
 
@@ -127,10 +134,7 @@ public class Unit implements IUnit{
         }
     }
 
-    @Override
-    public void move(int x, int y) {
-        move.move(x, y);
-    }
+
 
 
     @Override
@@ -189,13 +193,30 @@ public class Unit implements IUnit{
         return gear;
     }
 
-    @Override
-    public IGear setGear() {
-        return null;
-    }
 
+    @Override
     public void setGear(IGear gear) {
         this.gear = gear;
+    }
+
+    @Override
+    public void setInventory(IInventory inventory) {
+        this.inventory = inventory;
+    }
+
+    @Override
+    public IInventory getInventory() {
+        return inventory;
+    }
+
+    @Override
+    public int getExpCost() {
+        return this.expCost;
+    }
+
+    @Override
+    public int getLevel() {
+        return this.level;
     }
 
 

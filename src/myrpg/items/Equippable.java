@@ -2,6 +2,7 @@ package myrpg.items;
 
 import myrpg.effects.IEffect;
 import myrpg.items.gear.GearSlotType;
+import myrpg.items.gear.GearSlots;
 import myrpg.units.IUnit;
 
 import java.util.List;
@@ -27,6 +28,11 @@ public abstract class Equippable extends Item implements IEquippable{
     public boolean isEquipped(IItem item) {
 
         return false;
+    }
+
+    @Override
+    public GearSlotType getGearSlotType(){
+        return this.gearSlot;
     }
 
 }

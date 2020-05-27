@@ -1,9 +1,9 @@
 package myrpg.items;
 
 public enum ItemType {
+    weapon,
     armor,
     accessoire,
-    weapon,
     quest,
     usable,
     trash

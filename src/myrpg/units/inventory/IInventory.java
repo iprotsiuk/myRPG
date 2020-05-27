@@ -1,4 +1,4 @@
-package myrpg.units;
+package myrpg.units.inventory;
 
 import myrpg.items.IItem;
 import myrpg.items.ItemType;
