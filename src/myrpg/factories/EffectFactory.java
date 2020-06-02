@@ -23,7 +23,7 @@ public class EffectFactory {
         Random random = new Random();
         List<IEffect> randomEffects = new ArrayList<>();
         int randomForAmountOfEffects = random.nextInt(100);
-        int randomEffect = random.nextInt(effects.size());
+        int randomEffectIndex = random.nextInt(effects.size());
         int amount;
 
         if(randomForAmountOfEffects < 50)
@@ -35,11 +35,13 @@ public class EffectFactory {
         else
             amount = 4;
 
+
         for(int i = 0; i < amount; ){
-            if(!randomEffects.contains(effects.get(randomEffect))) {
+            if(!randomEffects.contains(effects.get(randomEffectIndex))) {
                 randomEffects.add(effects.get(i));
                 i++;
             }
+            randomEffectIndex = random.nextInt(effects.size());
 
         }
 

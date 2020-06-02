@@ -37,11 +37,16 @@ public class InventoryTest {
 
 
     public static void createUnitTest(){
-        IUnit unit = MonsterFactory.getRandomUnit();
+        for (int i = 0; i < 50; i++) {
+
+            IUnit unit = MonsterFactory.getRandomUnit();
             for (IItem item : unit.getInventory().getInventoryContent()) {
-                System.out.println(item.getItemName());
+                System.out.println(item.getEffectsList());
             }
+            System.out.println("i = " + i);
+        }
     }
+
 
 
     public static void sortByTypeTest(){

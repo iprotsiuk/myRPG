@@ -21,17 +21,18 @@ public class MonsterFactory {
 
     private static IUnit createUnit(IRace _race, IClass _class, int expCost, int level, List<IItem> inventoryList){
         IUnit unit = new Unit(_race, _class, expCost, level);
-        IGear gearOnUnit = new Gear();
-        IInventory inventoryOnUnit = new Inventory(999);
+        IGear gearForUnit = new Gear();
+        IInventory inventoryForUnit = new Inventory(999);
 
 
         if(inventoryList != null && inventoryList.size() > 0 ) {
-            inventoryOnUnit.putAllInList(gearOnUnit.equipAllInList(inventoryList));
-            unit.setGear(gearOnUnit);
+            inventoryForUnit.putAllInList(gearForUnit.equipAllInList(inventoryList));
+            unit.setGear(gearForUnit);
+//            unit.setInventory(inventoryForUnit);
         }
 
-        if(inventoryOnUnit.getEmptySpace() != inventoryOnUnit.getTotalSpace())
-            unit.setInventory(inventoryOnUnit);
+//        if(inventoryForUnit.getEmptySpace() != inventoryForUnit.getTotalSpace())
+            unit.setInventory(inventoryForUnit);
 
         return unit;
     }
@@ -51,11 +52,11 @@ public class MonsterFactory {
     public static IUnit getRandomUnit(){
         double randomNumber = Math.random();
         int level = (int) (Math.random() * 100);
+        List<IItem> inventoryList = createInventoryList();
         if(randomNumber < 0.7) {
-            return createUndeadWarrior(level, createInventoryList());
+            return createUndeadWarrior(level, inventoryList);
         }
-        return createUndeadArcher(level, createInventoryList());
-
+        return createUndeadArcher(level, inventoryList);
     }
 
     private static List<IItem> createInventoryList(){
@@ -63,10 +64,10 @@ public class MonsterFactory {
         List<IItem> inventoryList = new ArrayList<>();
         int random = rand.nextInt(10);
 
-        for(int i = 1; i < random; i++){
-            inventoryList.add(ItemFactory.getRandomItem());
+        for(int i = 0; i < random; i++){
+            IItem item = ItemFactory.getRandomItem();
+            inventoryList.add(item);
         }
-        System.out.println(inventoryList);
         return inventoryList;
     }
 
