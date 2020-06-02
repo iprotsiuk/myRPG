@@ -4,12 +4,9 @@ import myrpg.units.MovementType;
 
 public class Archer implements IClass {
     int range = 10;
-    int speed = 5;
     private String className = "Archer";
 
-    public Archer(int speed, int range) {
-        this.speed = speed;
-        this.range = range;
+    public Archer() {
     }
 
     @Override

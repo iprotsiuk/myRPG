@@ -32,6 +32,7 @@ public class InventorySorter {
         public int compare(IItem item, IItem item2) {
             IEquippable IequippableItem = (IEquippable) item;
             IEquippable IequippableItem2 = (IEquippable) item2;
+
             return IequippableItem.getGearSlotType().compareTo(IequippableItem2.getGearSlotType());
         }
     }
@@ -55,11 +56,12 @@ public class InventorySorter {
         int from = 0;
         for(int i = 0; i < inventory.size(); i++){
             if(inventory.get(i).getItemType() != itemType){
-                list.add(inventory.subList(from, i-1));
+                list.add(inventory.subList(from, i));
                 from = i;
+                itemType = inventory.get(i).getItemType();
             }
         }
-        list.add(inventory.subList(from, inventory.size()-1));
+        list.add(inventory.subList(from, inventory.size())); //removed -1 from inventory.size
         return list;
     }
 

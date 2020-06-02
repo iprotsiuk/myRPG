@@ -3,9 +3,11 @@ package myrpg.items.gear;
 import myrpg.items.IItem;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
-public class GearSlots implements IGear {
+public class Gear implements IGear {
     Map<GearSlotType, IItem> gear = new HashMap<>();
 
     @Override
@@ -32,6 +34,20 @@ public class GearSlots implements IGear {
 
         gear.put(gearSlot, item);
         return true;
+    }
+
+    @Override
+    public List<IItem> equipAllInList(List<IItem> items) {
+        List<IItem> notEquipped = new LinkedList<>();
+
+        for(IItem item : items){
+            for(GearSlotType gearSlot : item.getPossibleSlots()){
+                if(!equip(gearSlot, item)){
+                    notEquipped.add(item);
+                }
+            }
+        }
+        return notEquipped;
     }
 
 

@@ -8,14 +8,19 @@ import myrpg.items.gear.weapon.WeaponSlots;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Sword extends Weapon {
+public class Sword extends Weapon {
     static List<GearSlotType> possibleSlots = new ArrayList<>();
 
     static {
         possibleSlots.add(GearSlotType.twoHand);
     }
 
-    public Sword(WeaponSlots weaponSlot, String itemName, int itemLevel, boolean isUnique, List<IEffect> IEffectList) {
-        super(weaponSlot, itemName, itemLevel, isUnique, IEffectList);
+    public Sword(String itemName, int itemLevel, boolean isUnique, List<IEffect> IEffectList) {
+        super(WeaponSlots.twoHand, itemName, itemLevel, isUnique, IEffectList);
+    }
+
+    @Override
+    public List<GearSlotType> getPossibleSlots(){
+        return this.possibleSlots;
     }
 }

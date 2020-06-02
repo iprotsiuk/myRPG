@@ -9,7 +9,7 @@ import myrpg.items.gear.armor.ArmorSlots;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Helm extends Armor {
+public class Helm extends Armor {
 
     static List<GearSlotType> possibleSlots = new ArrayList<>();
 

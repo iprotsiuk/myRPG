@@ -15,4 +15,5 @@ public interface IInventory {
     int getOccupiedSpace();
     List<IItem> getInventoryContent();
     List<IItem> getFilteredInventory(ItemType itemType);
+    List<IItem> putAllInList(List<IItem> items);
 }

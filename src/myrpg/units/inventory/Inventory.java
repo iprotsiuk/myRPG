@@ -2,6 +2,7 @@ package myrpg.units.inventory;
 
 import myrpg.items.IItem;
 import myrpg.items.ItemType;
+import myrpg.items.gear.GearSlotType;
 
 import java.util.*;
 
@@ -88,6 +89,19 @@ public class Inventory implements IInventory {
         }
         return filteredInventory;
     }
+
+    @Override
+    public List<IItem> putAllInList(List<IItem> items) {
+        List<IItem> notEquipped = new LinkedList<>();
+
+        for(IItem item : items){
+            if(!put(item))
+                notEquipped.add(item);
+        }
+        return notEquipped;
+    }
+
+
 
 
     private int findFirstEmptySlot(){

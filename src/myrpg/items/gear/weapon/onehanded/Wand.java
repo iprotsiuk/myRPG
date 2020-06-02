@@ -8,7 +8,7 @@ import myrpg.items.gear.weapon.WeaponSlots;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Wand extends Weapon {
+public class Wand extends Weapon {
 
     static List<GearSlotType> possibleSlots = new ArrayList<>();
     static {
@@ -18,5 +18,10 @@ public abstract class Wand extends Weapon {
 
     public Wand(WeaponSlots weaponSlot, String itemName, int itemLevel, boolean isUnique, List<IEffect> IEffectList) {
         super(weaponSlot, itemName, itemLevel, isUnique, IEffectList);
+    }
+
+    @Override
+    public List<GearSlotType> getPossibleSlots(){
+        return this.possibleSlots;
     }
 }

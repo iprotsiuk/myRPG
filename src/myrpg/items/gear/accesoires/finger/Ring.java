@@ -9,7 +9,7 @@ import myrpg.items.gear.accesoires.Accessories;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Ring extends Accessories {
+public class Ring extends Accessories {
     static List<GearSlotType> possibleSlots = new ArrayList<>();
 
     static {

@@ -2,7 +2,6 @@ package myrpg.items;
 
 import myrpg.effects.IEffect;
 import myrpg.items.gear.GearSlotType;
-import myrpg.items.gear.GearSlots;
 import myrpg.units.IUnit;
 
 import java.util.List;
@@ -12,6 +11,7 @@ public abstract class Equippable extends Item implements IEquippable{
 
     public Equippable(GearSlotType gearSlot, ItemType itemType, String itemName, int itemLevel, boolean isUnique, List<IEffect> IEffectList) {
         super(itemType, itemName, itemLevel, isUnique, IEffectList);
+        this.gearSlot = gearSlot;
     }
 
     @Override

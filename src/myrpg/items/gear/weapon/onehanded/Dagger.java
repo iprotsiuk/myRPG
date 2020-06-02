@@ -8,7 +8,7 @@ import myrpg.items.gear.weapon.WeaponSlots;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Dagger extends Weapon {
+public class Dagger extends Weapon {
 
     static List<GearSlotType> possibleSlots = new ArrayList<>();
     static {
@@ -19,5 +19,11 @@ public abstract class Dagger extends Weapon {
 
     public Dagger(WeaponSlots weaponSlot, String itemName, int itemLevel, boolean isUnique, List<IEffect> IEffectList) {
         super(weaponSlot, itemName, itemLevel, isUnique, IEffectList);
+    }
+
+
+    @Override
+    public List<GearSlotType> getPossibleSlots(){
+        return this.possibleSlots;
     }
 }

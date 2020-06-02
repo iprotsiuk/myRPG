@@ -4,11 +4,9 @@ import myrpg.units.MovementType;
 
 public class Warrior implements IClass {
 
-    int speed = 5;
     private String className = "Warrior";
 
-    public Warrior(int speed) {
-        this.speed = speed;
+    public Warrior() {
     }
 
     @Override
