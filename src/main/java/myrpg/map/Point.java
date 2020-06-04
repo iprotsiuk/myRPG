@@ -1,4 +1,4 @@
-package myrpg.units;
+package myrpg.map;
 
 public class Point {
     int colPosition;

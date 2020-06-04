@@ -1,6 +1,7 @@
 package myrpg.units;
 
 import myrpg.map.IMap;
+import myrpg.map.Point;
 
 import java.util.LinkedList;
 import java.util.List;

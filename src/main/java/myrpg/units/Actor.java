@@ -1,5 +1,6 @@
 package myrpg.units;
 
+import myrpg.map.Point;
 import myrpg.races.IRace;
 import myrpg.units.classes.IClass;
 
@@ -21,8 +22,8 @@ public class Actor extends Unit implements IMove{
     }
 
     @Override
-    public int getPosition() {
-        return this.position.colPosition;
+    public Point getPosition() {
+        return this.position;
     }
 
     @Override
