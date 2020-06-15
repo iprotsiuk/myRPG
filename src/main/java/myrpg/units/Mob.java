@@ -25,18 +25,28 @@ public class Mob extends Unit implements IMove {
     }
 
     @Override
-    public Point getPosition() {
+    public Point getCurrentPosition() {
         return position;
     }
 
 
     @Override
-    public void pursuit(IMove move) {
+    public void moveToAttackRange(IMove move) {
 
     }
 
     @Override
     public void follow(IMove move) {
 
+    }
+
+    @Override
+    public int getMoveDistance() {
+        return this.speed;
+    }
+
+    @Override
+    public void setPosition(Point point) {
+        this.position = point;
     }
 }

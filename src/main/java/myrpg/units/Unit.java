@@ -102,7 +102,7 @@ public class Unit implements IUnit{
     }
 
     @Override
-    public void focusTarget(IUnit target) {
+    public void setFocusTarget(IUnit target) {
         this.focusedTarget = target;
     }
 
@@ -220,4 +220,8 @@ public class Unit implements IUnit{
     }
 
 
+    @Override
+    public int compareTo(IUnit unit) {
+        return Integer.compare(this.level, unit.getLevel());
+    }
 }

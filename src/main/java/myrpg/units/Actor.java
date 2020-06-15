@@ -5,34 +5,40 @@ import myrpg.races.IRace;
 import myrpg.units.classes.IClass;
 
 public class Actor extends Unit implements IMove{
-    Point position;
+    MovementController movementController;
 
     int experience = 0;
 
 
-    public Actor(IRace race, IClass _class, int level, int rowsPosition, int colsPosition) {
+    public Actor(IRace race, IClass _class, int level, MovementController movementController) {
         super(race, _class, level*1000, level);
-        position = new Point(colsPosition, rowsPosition);
+        this.movementController = movementController;
     }
 
+    @Override
+    public Point getCurrentPosition() {
+        return movementController.getUnitPosition(this);
+    }
 
     @Override
     public void move(int colsPosition, int rowsPosition) {
-
+        movementController.move(this, new Point(colsPosition, rowsPosition), this.getSpeed());
     }
 
     @Override
-    public Point getPosition() {
-        return this.position;
-    }
-
-    @Override
-    public void pursuit(IMove move) {
-
+    public void moveToAttackRange(IMove movable) {
+        int range = this._getClass().getRange();
+        movementController.moveToAttackRange(this, movable, this.speed, range);
     }
 
     @Override
     public void follow(IMove move) {
+        movementController.follow(this, move, this.getSpeed());
+    }
 
+
+    @Override
+    public IUnit getUnit() {
+        return this;
     }
 }

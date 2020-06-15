@@ -40,6 +40,11 @@ public class Archer implements IClass {
     }
 
     @Override
+    public int getRange() {
+        return this.range;
+    }
+
+    @Override
     public AttackType getAttackType() {
         return AttackType.rangedPhysicalDamage;
     }

@@ -4,6 +4,7 @@ import myrpg.units.MovementType;
 
 public class Warrior implements IClass {
 
+
     private String className = "Warrior";
 
     public Warrior() {
@@ -37,6 +38,11 @@ public class Warrior implements IClass {
     @Override
     public String getClassName() {
         return className;
+    }
+
+    @Override
+    public int getRange() {
+        return 1;
     }
 
     @Override

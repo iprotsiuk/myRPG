@@ -9,7 +9,7 @@ import myrpg.units.inventory.IInventory;
 import java.util.List;
 
 //Each unit should implement IClass
-public interface IUnit {
+public interface IUnit extends Comparable<IUnit> {
     //getCurrentBuffs();
     //getCurrentDeBuffs();
 
@@ -17,7 +17,7 @@ public interface IUnit {
     int getCurrentMagicalResistance();
     int getBaseHp();
     int getSpeed();
-    void focusTarget(IUnit target);
+    void setFocusTarget(IUnit target);
     void attackTarget();
     int getCurrentAttack(); //including buffs;
     int getCurrentArmor(); //including buffs;

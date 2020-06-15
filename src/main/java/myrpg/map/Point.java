@@ -16,4 +16,10 @@ public class Point {
     public int getRowPosition() {
         return rowPosition;
     }
+
+    public static double getDistanceBetweenPoints(Point p1, Point p2){
+        double rowsDelta = Math.pow((p2.getRowPosition() - p1.getRowPosition()), 2);
+        double colsDelta = Math.pow((p2.getColPosition() - p1.getColPosition()), 2);
+        return Math.sqrt(colsDelta+rowsDelta);
+    }
 }

@@ -5,14 +5,12 @@ import myrpg.units.IUnit;
 
 import java.util.List;
 
-public interface ILocation {
+public interface ILocation extends Comparable<ILocation> {
     IObstacle getObstacleOnLocation();
     List<IItem> checkItemsOnLocation();
     IItem takeItemFromLocation(IItem item);
     void addItemToLocation(IItem item);
-    IUnit getUnitOnLocation();
-    IUnit removeUnitFromLocation();
-    boolean setUnitOnLocation(IUnit unit);
-    boolean isAccessibleByUnit();
+    boolean hasObstacle();
+    long getId();
 
 }

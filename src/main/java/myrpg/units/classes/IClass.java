@@ -11,6 +11,7 @@ public interface IClass {
     int getBaseMagicAttack();
     int getBaseMagicalResistance();
     String getClassName();
+    int getRange();
 
     AttackType getAttackType();
     MovementType getMovementType();

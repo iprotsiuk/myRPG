@@ -1,50 +1,56 @@
 package myrpg.map;
 
+import javafx.util.Pair;
 import myrpg.factories.ItemFactory;
 import myrpg.factories.MonsterFactory;
 import myrpg.items.IItem;
 import myrpg.units.IUnit;
+import myrpg.units.Unit;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Location implements ILocation{
     List<IItem> itemsOnLocation;
-    IUnit unitOnLocation;
     IObstacle obstacleOnLocation;
+    static long currentID = 0;
+    long id;
 
-    public static ILocation generateRandomLocation(){
+    public static Pair<ILocation, IUnit> generateRandomLocation(){
         double randomNumber = Math.random();
         if(randomNumber < 0.15){
-            return new Location(Obstacle.generateRandomObstacle());
+            ILocation location = new Location(Obstacle.generateRandomObstacle());
+            return new Pair(location, null);
         }
         else if(randomNumber < 0.2){
-            return new Location(MonsterFactory.getRandomUnit());
+            IUnit unit = MonsterFactory.getRandomUnit();
+            ILocation location = new Location(Obstacle.generateRandomObstacle());
+            return new Pair(location, unit);
         }
-        else if(randomNumber < 0.3)
-            return new Location(ItemFactory.getListRandomItems(), MonsterFactory.getRandomUnit());
-
-        return new Location();
-    }
-
-    public Location(List<IItem> items, IUnit unit){
-        this.itemsOnLocation = items;
-        this.unitOnLocation = unit;
+        else if(randomNumber < 0.3) {
+            ILocation location = new Location(ItemFactory.getListRandomItems());
+            IUnit unit = MonsterFactory.getRandomUnit();
+            return new Pair(location, unit);
+        }
+        return new Pair(new Location(), null);
     }
 
     public Location(List<IItem> items){
         this.itemsOnLocation = items;
+        this.id = currentID;
+        currentID++;
     }
 
     public Location(IObstacle obstacle){
         this.obstacleOnLocation = obstacle;
+        this.id = currentID;
+        currentID++;
     }
 
-    public Location(IUnit unit){
-        this.unitOnLocation = unit;
-    }
 
     public Location(){
-
+        this.id = currentID;
+        currentID++;
     }
 
     @Override
@@ -77,40 +83,20 @@ public class Location implements ILocation{
     }
 
     @Override
-    public IUnit getUnitOnLocation() {
-        if(this.unitOnLocation != null)
-            return this.unitOnLocation;
-        return null;
-    }
-
-
-
-    @Override
-    public IUnit removeUnitFromLocation() {
-        if(getUnitOnLocation() != null) {
-            IUnit temp = getUnitOnLocation();
-            setUnitOnLocation(null);
-            return temp;
-        }
-        return null;
-    }
-
-    @Override
-    public boolean setUnitOnLocation(IUnit unit) {
-        if(isAccessibleByUnit()) {
-            this.unitOnLocation = unit;
-//            unit.location = this;
+    public boolean hasObstacle() {
+        if(getObstacleOnLocation() == null){
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean isAccessibleByUnit() {
-        if(getObstacleOnLocation() == null && getUnitOnLocation() == null){
-            return true;
-        }
-        return false;
+    public long getId(){
+        return this.id;
     }
 
+    @Override
+    public int compareTo(ILocation iLocation) {
+        return Long.compare(this.id, iLocation.getId());
+    }
 }
