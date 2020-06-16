@@ -6,7 +6,7 @@ public interface IMap {
     void generate();
     int getHeight();
     int getWidth();
-    ILocation getLocation(int col, int row);
+    ILocation getLocation(int row, int col);
     boolean isAccessibleByUnit(int row, int col);
     boolean removeUnit(IUnit unit);
     boolean removeUnit(Point position);

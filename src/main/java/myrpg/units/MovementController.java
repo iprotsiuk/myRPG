@@ -4,7 +4,9 @@ import myrpg.map.IMap;
 import myrpg.map.PathFinder;
 import myrpg.map.Point;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MovementController {
     IMap map;
@@ -25,10 +27,6 @@ public class MovementController {
         return path.subList(0, travelledDistance);
     }
 
-    public Point getUnitPosition(IUnit unit){
-        return map.getUnitPosition(unit);
-    }
-
     public List<Point> follow(IMove self, IMove target, int distance) {
         PathFinder pf = new PathFinder(this.map);
         List<Point> path = pf.buildPath(self.getCurrentPosition(), target.getCurrentPosition());
@@ -42,6 +40,31 @@ public class MovementController {
         map.addUnit(self.getUnit(), path.get(travelledDistance));
 
         return path.subList(0, travelledDistance);
+    }
+
+    public List<Point> roam(IMove self, int range){
+        PathFinder pf = new PathFinder(this.map);
+        List<List<Point>> reachableLocations = new ArrayList<>();
+        for(int i = self.getCurrentPosition().getRowPosition() - range/2; i <= self.getCurrentPosition().getRowPosition() + range/2; i++){
+            for(int j = self.getCurrentPosition().getColPosition() - range/2; j <= self.getCurrentPosition().getColPosition() + range/2; j++){
+                Point destination = new Point (i, j);
+                if(getDistanceToDestination(self, destination) <= range){
+                    List<Point> path = pf.buildPath(self.getCurrentPosition(), destination);
+                    if(!reachableLocations.contains(path)){
+                        reachableLocations.add(path);
+                    }
+                }
+            }
+        }
+
+        if(reachableLocations.size() != 0) {
+            Random random = new Random();
+            List<Point> randomPath = reachableLocations.get(random.nextInt(reachableLocations.size()-1));
+            map.removeUnit(self.getCurrentPosition());
+            map.addUnit(self.getUnit(), randomPath.get(randomPath.size()-1));
+            return randomPath;
+        }
+        return null;
     }
 
     public List<Point> moveToAttackRange(IMove self, IMove target, int moveSpeed, int attackRange){
@@ -66,6 +89,10 @@ public class MovementController {
         return path.subList(0, travelledDistance);
     }
 
+    public Point getUnitPosition(IUnit unit){
+        return map.getUnitPosition(unit);
+    }
+
     public double getDistanceToMovable(IMove self, IMove movable){
         return getDistanceToDestination(self, movable.getCurrentPosition());
     }
@@ -73,5 +100,6 @@ public class MovementController {
     public double getDistanceToDestination(IMove self, Point destination){
         return Point.getDistanceBetweenPoints(self.getCurrentPosition(), destination);
     }
+
 
 }

@@ -4,6 +4,8 @@ import myrpg.map.Point;
 import myrpg.races.IRace;
 import myrpg.units.classes.IClass;
 
+import java.util.List;
+
 public class Actor extends Unit implements IMove{
     MovementController movementController;
 
@@ -21,19 +23,19 @@ public class Actor extends Unit implements IMove{
     }
 
     @Override
-    public void move(int colsPosition, int rowsPosition) {
-        movementController.move(this, new Point(colsPosition, rowsPosition), this.getSpeed());
+    public List<Point> move(int rowsPosition, int colsPosition) {
+        return movementController.move(this, new Point(rowsPosition, colsPosition), this.getSpeed());
     }
 
     @Override
-    public void moveToAttackRange(IMove movable) {
+    public List<Point> moveToAttackRange(IMove movable) {
         int range = this._getClass().getRange();
-        movementController.moveToAttackRange(this, movable, this.speed, range);
+        return movementController.moveToAttackRange(this, movable, this.speed, range);
     }
 
     @Override
-    public void follow(IMove move) {
-        movementController.follow(this, move, this.getSpeed());
+    public List<Point> follow(IMove move) {
+        return movementController.follow(this, move, this.getSpeed());
     }
 
 

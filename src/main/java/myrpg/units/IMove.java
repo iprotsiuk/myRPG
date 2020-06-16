@@ -4,10 +4,12 @@ package myrpg.units;
 
 import myrpg.map.Point;
 
+import java.util.List;
+
 public interface IMove {
-    void move(int colsPosition, int rowsPosition);
+    List<Point> move(int colsPosition, int rowsPosition);
     Point getCurrentPosition();
-    void moveToAttackRange(IMove move);
-    void follow(IMove move);
+    List<Point> moveToAttackRange(IMove movable);
+    List<Point> follow(IMove move);
     IUnit getUnit();
 }

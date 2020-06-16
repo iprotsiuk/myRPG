@@ -4,49 +4,54 @@ import myrpg.map.Point;
 import myrpg.races.IRace;
 import myrpg.units.classes.IClass;
 
-public class Mob extends Unit implements IMove {
-    Point position;
-    int colsPosition;
-    int rowsPosition;
-    int radiusOfMovement;
+import java.util.List;
 
-    public Mob(IRace race, IClass _class, int expCost, int level, int colsPosition, int rowsPosition, int radiusOfMovement, Point point) {
+public class Mob extends Unit implements IMove {
+//    Point position;
+//    int colsPosition;
+//    int rowsPosition;
+    int radiusOfMovement;
+    MovementController movementController;
+
+    public Mob(IRace race, IClass _class, int expCost, int level, MovementController movementController) {
         super(race, _class, expCost, level);
-        this.radiusOfMovement = radiusOfMovement;
-        this.colsPosition = colsPosition;
-        this.rowsPosition = rowsPosition;
-        this.position = point;
+        this.movementController = movementController;
+//        this.radiusOfMovement = radiusOfMovement;
+//        this.colsPosition = colsPosition;
+//        this.rowsPosition = rowsPosition;
+//        this.position = point;
     }
 
+    public List<Point> roamAggressively(){
+
+        return  null;
+    }
 
     @Override
-    public void move(int colsPosition, int rowsPosition) {
-
+    public List<Point> move(int rowsPosition, int colsPosition) {
+        return movementController.move(this, new Point(rowsPosition, colsPosition), this.getSpeed());
     }
 
     @Override
     public Point getCurrentPosition() {
-        return position;
+        return movementController.getUnitPosition(this);
     }
 
 
     @Override
-    public void moveToAttackRange(IMove move) {
-
+    public List<Point> moveToAttackRange(IMove movable) {
+        int range = this._getClass().getRange();
+        return movementController.moveToAttackRange(this, movable, this.speed, range);
     }
 
     @Override
-    public void follow(IMove move) {
-
+    public List<Point> follow(IMove move) {
+        return movementController.follow(this, move, this.getSpeed());
     }
 
     @Override
-    public int getMoveDistance() {
-        return this.speed;
+    public IUnit getUnit() {
+        return this;
     }
 
-    @Override
-    public void setPosition(Point point) {
-        this.position = point;
-    }
 }
