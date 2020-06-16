@@ -1,6 +1,7 @@
 package myrpg.map;
 
 import myrpg.units.IUnit;
+import org.apache.commons.collections4.BidiMap;
 
 public interface IMap {
     void generate();
@@ -12,4 +13,5 @@ public interface IMap {
     boolean removeUnit(Point position);
     boolean addUnit(IUnit unit, Point position);
     Point getUnitPosition(IUnit unit);
+    BidiMap<ILocation, IUnit> getUnitsOnLocations();
 }

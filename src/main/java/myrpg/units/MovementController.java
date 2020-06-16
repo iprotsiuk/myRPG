@@ -42,24 +42,32 @@ public class MovementController {
         return path.subList(0, travelledDistance);
     }
 
-    public List<Point> roam(IMove self, int range){
+    public List<Point> getReachableLocations(IMove self, int range, int speed){
         PathFinder pf = new PathFinder(this.map);
-        List<List<Point>> reachableLocations = new ArrayList<>();
+        List<List<Point>> reachableLocationsPaths = new ArrayList<>();
         for(int i = self.getCurrentPosition().getRowPosition() - range/2; i <= self.getCurrentPosition().getRowPosition() + range/2; i++){
             for(int j = self.getCurrentPosition().getColPosition() - range/2; j <= self.getCurrentPosition().getColPosition() + range/2; j++){
                 Point destination = new Point (i, j);
                 if(getDistanceToDestination(self, destination) <= range){
                     List<Point> path = pf.buildPath(self.getCurrentPosition(), destination);
-                    if(!reachableLocations.contains(path)){
-                        reachableLocations.add(path);
+                    if(path.size() < speed && !reachableLocationsPaths.contains(path)){
+                        reachableLocationsPaths.add(path);
                     }
                 }
             }
         }
+        List<Point> reachableLocations = new ArrayList<>();
+        for(List<Point> paths : reachableLocationsPaths){
+            reachableLocations.add(paths.get(paths.size()-1));
+        }
+        return reachableLocations;
+    }
 
+    public List<Point> roam(IMove self, List<Point> reachableLocations){
+        PathFinder pf = new PathFinder(this.map);
         if(reachableLocations.size() != 0) {
             Random random = new Random();
-            List<Point> randomPath = reachableLocations.get(random.nextInt(reachableLocations.size()-1));
+            List<Point> randomPath = pf.buildPath(self.getCurrentPosition(), reachableLocations.get(random.nextInt(reachableLocations.size()-1)));
             map.removeUnit(self.getCurrentPosition());
             map.addUnit(self.getUnit(), randomPath.get(randomPath.size()-1));
             return randomPath;
@@ -101,5 +109,8 @@ public class MovementController {
         return Point.getDistanceBetweenPoints(self.getCurrentPosition(), destination);
     }
 
+    public IMap getMap() {
+        return map;
+    }
 
 }

@@ -10,33 +10,37 @@ import java.util.HashMap;
 
 public class Map implements IMap {
     ILocation[][] map;
-    BidiMap<ILocation, IUnit> unitsOnLocation = new TreeBidiMap<ILocation, IUnit>();
+    BidiMap<ILocation, IUnit> unitsOnLocations = new TreeBidiMap<ILocation, IUnit>();
     HashMap<ILocation, Point> hash = new HashMap<>();
 
     public Map(int row, int col){
         this.map = new Location[row][col];
     }
 
+    public BidiMap<ILocation, IUnit> getUnitsOnLocations(){
+        return this.unitsOnLocations;
+    }
+
     public boolean addUnit(IUnit unit, Point position){
         ILocation location = map[position.rowPosition][position.colPosition];
-        if(unitsOnLocation.containsKey(location))
+        if(unitsOnLocations.containsKey(location))
             return false;
         if(location.hasObstacle())
             return false;
 
-        unitsOnLocation.put(location, unit);
+        unitsOnLocations.put(location, unit);
         return true;
     }
 
     @Override
     public Point getUnitPosition(IUnit unit) {
-        ILocation location = unitsOnLocation.getKey(unit);
+        ILocation location = unitsOnLocations.getKey(unit);
         return hash.get(location);
     }
 
     public boolean isAccessibleByUnit(int row, int col){
         ILocation location = map[row][col];
-        return !(location.hasObstacle() || unitsOnLocation.containsKey(location));
+        return !(location.hasObstacle() || unitsOnLocations.containsKey(location));
     }
 
 //    public boolean removeUnit(IUnit unit, Point position){
@@ -47,8 +51,8 @@ public class Map implements IMap {
 //    }
 
     public boolean removeUnit(IUnit unit){
-        if(unitsOnLocation.containsValue(unit)){
-            unitsOnLocation.remove(unitsOnLocation.getKey(unit));
+        if(unitsOnLocations.containsValue(unit)){
+            unitsOnLocations.remove(unitsOnLocations.getKey(unit));
             return true;
         }
         return false;
@@ -56,8 +60,8 @@ public class Map implements IMap {
 
     public boolean removeUnit(Point position){
         ILocation location = map[position.rowPosition][position.colPosition];
-        if(unitsOnLocation.containsKey(location)){
-            unitsOnLocation.remove(location);
+        if(unitsOnLocations.containsKey(location)){
+            unitsOnLocations.remove(location);
             return true;
         }
         return false;
@@ -70,7 +74,7 @@ public class Map implements IMap {
                 map[i][j] = locationWithUnit.getKey();
 
                 if(locationWithUnit.getValue() != null)
-                    unitsOnLocation.put(locationWithUnit.getKey(), locationWithUnit.getValue());
+                    unitsOnLocations.put(locationWithUnit.getKey(), locationWithUnit.getValue());
 
                 hash.put(locationWithUnit.getKey(), new Point(j, i));
             }
