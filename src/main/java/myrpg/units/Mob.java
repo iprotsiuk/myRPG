@@ -1,40 +1,39 @@
 package myrpg.units;
 
-import myrpg.map.IMap;
+import javafx.util.Pair;
 import myrpg.map.Point;
 import myrpg.races.IRace;
 import myrpg.units.classes.IClass;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Mob extends Unit implements IMove {
 //    Point position;
 //    int colsPosition;
 //    int rowsPosition;
-    int radiusOfMovement;
+    int patrolRange;
     MovementController movementController;
     List<Point> reachableLocations;
 
-    public Mob(IRace race, IClass _class, int expCost, int level, MovementController movementController, int radiusOfMovement) {
+    public Mob(IRace race, IClass _class, int expCost, int level, MovementController movementController, int patrolRange) {
         super(race, _class, expCost, level);
         this.movementController = movementController;
-        this.radiusOfMovement = radiusOfMovement;
-        this.reachableLocations = movementController.getReachableLocations(this, radiusOfMovement, speed);
+        this.patrolRange = patrolRange;
+        this.reachableLocations = movementController.getReachableLocations(this, patrolRange, speed);
 //        this.radiusOfMovement = radiusOfMovement;
 //        this.colsPosition = colsPosition;
 //        this.rowsPosition = rowsPosition;
 //        this.position = point;
     }
 
-    public List<Point> roam(){
-//        List<Point> locationsInRange = movementController.getReachableLocations(this, radiusOfMovement, this.speed);
-//        IMap map = movementController.getMap();
-//        for(Point p : locationsInRange ){
-//            if(map.getUnitsOnLocations().containsKey(p))
-//                return moveToAttackRange(map.getUnitsOnLocations().get(p));
-//        }
-        return movementController.roam(this, this.reachableLocations);
+    public Pair<List<Point>, IUnit> roam() {
+        IUnit nearestUnit = movementController.getNearestUnit(this, patrolRange, this.speed);
+
+        if(nearestUnit == null) {
+            List<Point> path = movementController.roam(this, reachableLocations);
+            return new Pair(path, null);
+        }
+        return null;
     }
 
 
@@ -61,7 +60,23 @@ public class Mob extends Unit implements IMove {
     }
 
     @Override
+    public List<Point> moveToAttackRange(IUnit unit) {
+        int range = this._getClass().getRange();
+        return movementController.moveToAttackRange(this, unit.getMovable(), this.speed, range);
+    }
+
+    @Override
+    public List<Point> follow(IUnit unit) {
+        return  movementController.follow(this, unit.getMovable(), this.getSpeed());
+    }
+
+    @Override
     public IUnit getUnit() {
+        return this;
+    }
+
+    @Override
+    public IMove getMovable() {
         return this;
     }
 

@@ -38,9 +38,25 @@ public class Actor extends Unit implements IMove{
         return movementController.follow(this, move, this.getSpeed());
     }
 
+    @Override
+    public IMove getMovable() {
+        return this;
+    }
 
     @Override
     public IUnit getUnit() {
         return this;
     }
+
+    @Override
+    public List<Point> moveToAttackRange(IUnit unit) {
+        int range = this._getClass().getRange();
+        return movementController.moveToAttackRange(this, unit.getMovable(), this.speed, range);
+    }
+
+    @Override
+    public List<Point> follow(IUnit unit) {
+        return  movementController.follow(this, unit.getMovable(), this.getSpeed());
+    }
+
 }

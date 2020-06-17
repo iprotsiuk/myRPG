@@ -41,6 +41,8 @@ public interface IUnit extends Comparable<IUnit> {
     IInventory getInventory();
     int getExpCost();
     int getLevel();
-
-
+    default IMove getMovable() {
+        return null;
     }
+
+}

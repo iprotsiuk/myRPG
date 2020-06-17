@@ -21,6 +21,12 @@ public class Map implements IMap {
         return this.unitsOnLocations;
     }
 
+    @Override
+    public IUnit getUnitOnPoint(Point point) {
+        return null;
+    }
+
+
     public boolean addUnit(IUnit unit, Point position){
         ILocation location = map[position.rowPosition][position.colPosition];
         if(unitsOnLocations.containsKey(location))

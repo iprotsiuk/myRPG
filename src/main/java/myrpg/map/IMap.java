@@ -14,4 +14,5 @@ public interface IMap {
     boolean addUnit(IUnit unit, Point position);
     Point getUnitPosition(IUnit unit);
     BidiMap<ILocation, IUnit> getUnitsOnLocations();
+    IUnit getUnitOnPoint(Point point);
 }
