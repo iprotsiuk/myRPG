@@ -85,9 +85,9 @@ public class Location implements ILocation{
     @Override
     public boolean hasObstacle() {
         if(getObstacleOnLocation() == null){
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     @Override

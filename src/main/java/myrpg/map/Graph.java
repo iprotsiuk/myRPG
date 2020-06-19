@@ -6,7 +6,7 @@ import java.util.*;
 
 @SuppressWarnings("PointlessBooleanExpression")
 public class Graph {
-    List<Node> graph;
+    ArrayList<Node> graph;
     int mapWidth;
     int mapHeight;
 
@@ -14,7 +14,7 @@ public class Graph {
     public Graph(int mapWidth, int mapHeight) {
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
-        graph = new ArrayList<>(mapHeight*mapWidth);
+        this.graph = new ArrayList<Node>(Collections.nCopies(mapHeight*mapWidth, null));
     }
 
 

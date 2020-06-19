@@ -29,10 +29,7 @@ public class Unit implements IUnit{
     int currentMagicalResistance = 0;
     List<Effect> effectList = new ArrayList<Effect>();
 
-
-
-
-    boolean isDead = false;
+   boolean isDead = false;
     static  int countCreate = 0;
     static int countDead = 0;
 

@@ -8,9 +8,7 @@ import myrpg.units.classes.IClass;
 import java.util.List;
 
 public class Mob extends Unit implements IMove {
-//    Point position;
-//    int colsPosition;
-//    int rowsPosition;
+
     int patrolRange;
     MovementController movementController;
     List<Point> reachableLocations;
@@ -19,22 +17,21 @@ public class Mob extends Unit implements IMove {
         super(race, _class, expCost, level);
         this.movementController = movementController;
         this.patrolRange = patrolRange;
-        this.reachableLocations = movementController.getReachableLocations(this, patrolRange, speed);
-//        this.radiusOfMovement = radiusOfMovement;
-//        this.colsPosition = colsPosition;
-//        this.rowsPosition = rowsPosition;
-//        this.position = point;
     }
 
-    public Pair<List<Point>, IUnit> roam() {
-        IUnit nearestUnit = movementController.getNearestUnit(this, patrolRange, this.speed);
-
-        if(nearestUnit == null) {
-            List<Point> path = movementController.roam(this, reachableLocations);
-            return new Pair(path, null);
-        }
-        return null;
+    public void setReachableLocations(List<Point> reachableLocations){
+        this.reachableLocations = reachableLocations;
     }
+
+//    public Pair<List<Point>, IUnit> f() {
+//        IUnit nearestUnit = movementController.getNearestUnit(this, patrolRange, this.speed);
+//
+//        if(nearestUnit == null) {
+//            List<Point> path = movementController.roam(this, reachableLocations);
+//            return new Pair(path, null);
+//        }
+//        return null;
+//    }
 
 
     @Override
@@ -47,6 +44,9 @@ public class Mob extends Unit implements IMove {
         return movementController.getUnitPosition(this);
     }
 
+    public List<Point> roam(){
+        return movementController.roam(this, reachableLocations);
+    }
 
     @Override
     public List<Point> moveToAttackRange(IMove movable) {
@@ -78,6 +78,10 @@ public class Mob extends Unit implements IMove {
     @Override
     public IMove getMovable() {
         return this;
+    }
+
+    public List<Point> getReachableLocations() {
+        return reachableLocations;
     }
 
 }

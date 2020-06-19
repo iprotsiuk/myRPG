@@ -45,7 +45,8 @@ public class MovementController {
     }
 
     public List<Point> getReachableLocations(IMove self, int range, int speed) {
-        return getReachableLocations(self.getCurrentPosition(), range, speed);
+        Point currentPosition = self.getCurrentPosition();
+        return getReachableLocations(currentPosition, range, speed);
     }
 
     public List<Point> getReachableLocations(Point center, int range, int speed) {
@@ -83,6 +84,7 @@ public class MovementController {
     }
 
     public IUnit getNearestUnit(Point point, int range, int speed) {
+
         List<Point> reachableLocations = getReachableLocations(point, range, speed);
         List<Pair<IUnit, Point>> locationsWithUnits = getIUnitsOnListPoints(reachableLocations);
         return getNearestUnit(locationsWithUnits, point);

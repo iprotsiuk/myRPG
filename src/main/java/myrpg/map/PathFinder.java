@@ -9,15 +9,15 @@ import java.util.List;
 public class PathFinder {
     IMap map;
     MapConverter mapConverter;
+    Graph graph;
 
     public PathFinder(IMap map){
         this.map = map;
         this.mapConverter = new MapConverter(map);
+        this.graph = mapConverter.toGraph();
     }
 
     public List<Point> buildPath(Point currentPosition, Point targetPosition){
-        Graph graph = mapConverter.toGraph();
-
         return graph.dijkstra(currentPosition, targetPosition);
     }
 

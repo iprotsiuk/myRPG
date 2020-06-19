@@ -1,6 +1,7 @@
 package myrpg.map;
 
 import javafx.util.Pair;
+import myrpg.units.Actor;
 import myrpg.units.IUnit;
 import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.bidimap.TreeBidiMap;
@@ -13,11 +14,11 @@ public class Map implements IMap {
     BidiMap<ILocation, IUnit> unitsOnLocations = new TreeBidiMap<ILocation, IUnit>();
     HashMap<ILocation, Point> hash = new HashMap<>();
 
-    public Map(int row, int col){
+    public Map(int row, int col) {
         this.map = new Location[row][col];
     }
 
-    public BidiMap<ILocation, IUnit> getUnitsOnLocations(){
+    public BidiMap<ILocation, IUnit> getUnitsOnLocations() {
         return this.unitsOnLocations;
     }
 
@@ -27,11 +28,11 @@ public class Map implements IMap {
     }
 
 
-    public boolean addUnit(IUnit unit, Point position){
+    public boolean addUnit(IUnit unit, Point position) {
         ILocation location = map[position.rowPosition][position.colPosition];
-        if(unitsOnLocations.containsKey(location))
+        if (unitsOnLocations.containsKey(location))
             return false;
-        if(location.hasObstacle())
+        if (location.hasObstacle())
             return false;
 
         unitsOnLocations.put(location, unit);
@@ -44,7 +45,7 @@ public class Map implements IMap {
         return hash.get(location);
     }
 
-    public boolean isAccessibleByUnit(int row, int col){
+    public boolean isAccessibleByUnit(int row, int col) {
         ILocation location = map[row][col];
         return !(location.hasObstacle() || unitsOnLocations.containsKey(location));
     }
@@ -56,32 +57,42 @@ public class Map implements IMap {
 //        }
 //    }
 
-    public boolean removeUnit(IUnit unit){
-        if(unitsOnLocations.containsValue(unit)){
+    public boolean removeUnit(IUnit unit) {
+        if (unitsOnLocations.containsValue(unit)) {
             unitsOnLocations.remove(unitsOnLocations.getKey(unit));
             return true;
         }
         return false;
     }
 
-    public boolean removeUnit(Point position){
+    public boolean removeUnit(Point position) {
         ILocation location = map[position.rowPosition][position.colPosition];
-        if(unitsOnLocations.containsKey(location)){
+        if (unitsOnLocations.containsKey(location)) {
             unitsOnLocations.remove(location);
             return true;
         }
         return false;
     }
 
-    public void generate(){
-        for(int i = 0; i < map.length; i++){
-            for(int j = 0; j < map[i].length; j++){
+    public void generate() {
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
                 Pair<ILocation, IUnit> locationWithUnit = Location.generateRandomLocation();
                 map[i][j] = locationWithUnit.getKey();
 
-                if(locationWithUnit.getValue() != null)
+                if (locationWithUnit.getValue() != null)
                     unitsOnLocations.put(locationWithUnit.getKey(), locationWithUnit.getValue());
 
+                hash.put(locationWithUnit.getKey(), new Point(j, i));
+            }
+        }
+    }
+
+    public void generateEmptyMap() {
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                Pair<ILocation, IUnit> locationWithUnit = new Pair<>(new Location(), null);
+                map[i][j] = locationWithUnit.getKey();
                 hash.put(locationWithUnit.getKey(), new Point(j, i));
             }
         }
