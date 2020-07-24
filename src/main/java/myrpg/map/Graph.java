@@ -28,16 +28,16 @@ public class Graph {
             graph.set(destinationIndex, new Node(rowPositionDestination, colPositionDestination));
 
         graph.get(index).addNeighbour(destinationIndex);
-//        graph.get(destinationIndex).addNeighbour(index);
+        graph.get(destinationIndex).addNeighbour(index);
     }
 
 
     private class Node {
         Point point;
-        List<Integer> neighboursIndex = new ArrayList<>();
+        Set<Integer> neighboursIndex = new HashSet<>();
 
         public Node (int rowPosition, int colPosition) {
-            this.point = new Point(colPosition, rowPosition);
+            this.point = new Point(rowPosition, colPosition);
         }
 
         public void addNeighbour(int index) {
@@ -48,7 +48,7 @@ public class Graph {
             return point;
         }
 
-        public List<Integer> getNeighboursIndex() {
+        public Set<Integer> getNeighboursIndex() {
             return neighboursIndex;
         }
     }
@@ -64,7 +64,7 @@ public class Graph {
         Arrays.fill(visitedNodes, false);
 
         minDistancesFromStart[startIndex] = 0;
-        
+
 
         int closestAvailableNodeToStart = graph.size();
         int minDistanceToClosestAvailableNode = Integer.MAX_VALUE;
@@ -79,7 +79,7 @@ public class Graph {
                 }
             }
             if(closestAvailableNodeToStart != graph.size()){
-                List<Integer> neighbours = graph.get(closestAvailableNodeToStart).getNeighboursIndex();
+                Set<Integer> neighbours = graph.get(closestAvailableNodeToStart).getNeighboursIndex();
                 for(int i : neighbours){
                     int temp = minDistanceToClosestAvailableNode+1;
                     if(temp < minDistancesFromStart[i]){
@@ -96,7 +96,7 @@ public class Graph {
             minDistanceToClosestAvailableNode = minDistancesFromStart[destinationIndex];
             int end = destinationIndex;
             while (end != startIndex){
-                List<Integer> neighbours = graph.get(end).getNeighboursIndex();
+                Set<Integer> neighbours = graph.get(end).getNeighboursIndex();
                 int temp = minDistanceToClosestAvailableNode-1;
                 for(int i : neighbours){
                     if(minDistancesFromStart[i] == temp){
@@ -108,55 +108,10 @@ public class Graph {
                 }
             }
         }
-        return reverseList(path);
+        Collections.reverse(path);
+        path.add(p2);
+        return path;
     }
-
-    private List<Point> reverseList(List<Point> list){
-        List<Point> reversed = new LinkedList<>();
-        for(int i = list.size()-1; i >=0; i--){
-            reversed.add(list.get(i));
-        }
-        return reversed;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

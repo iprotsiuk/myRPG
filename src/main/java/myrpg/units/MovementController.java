@@ -52,13 +52,13 @@ public class MovementController {
     public List<Point> getReachableLocations(Point center, int range, int speed) {
         PathFinder pf = new PathFinder(this.map);
         List<Point> reachableLocations = new ArrayList<>();
-        reachableLocations.add(center);
+//        reachableLocations.add(center);
         for (int i = center.getRowPosition() - range; i <= center.getRowPosition() + range; i++) {
             for (int j = center.getColPosition() - range; j <= center.getColPosition() + range; j++) {
                 Point destination = new Point(i, j);
                 if (Point.getDistanceBetweenPoints(center, destination) <= range) {
                     List<Point> path = pf.buildPath(center, destination);
-                    if (path.size() > 0 && path.size() < speed) {
+                    if (path.size() > 0 && path.size() <= speed) {
                         reachableLocations.add(path.get(path.size() - 1));
                     }
                 }
@@ -115,11 +115,11 @@ public class MovementController {
         return unit;
     }
 
-    public List<Point> moveToAttackRange(IMove self, IMove target, int moveSpeed, int attackRange) {
+    public List<Point> moveToAttackRange(IMove attacker, IMove target, int moveSpeed, int attackRange) {
         PathFinder pf = new PathFinder(this.map);
-        List<Point> path = pf.buildPath(self.getCurrentPosition(), target.getCurrentPosition());
+        List<Point> path = pf.buildPath(attacker.getCurrentPosition(), target.getCurrentPosition());
 
-        double absoluteDistanceToTarget = getDistanceToMovable(self, target);
+        double absoluteDistanceToTarget = getDistanceToMovable(attacker, target);
         int travelledDistance = 0;
 
         if (absoluteDistanceToTarget <= attackRange) {
@@ -130,8 +130,8 @@ public class MovementController {
             travelledDistance = moveSpeed;
         }
         travelledDistance = travelledDistance > path.size() ? path.size() - 1 : travelledDistance;
-        map.removeUnit(self.getUnit());
-        map.addUnit(self.getUnit(), path.get(travelledDistance));
+        map.removeUnit(attacker.getUnit());
+        map.addUnit(attacker.getUnit(), path.get(travelledDistance));
         return path.subList(0, travelledDistance);
     }
 

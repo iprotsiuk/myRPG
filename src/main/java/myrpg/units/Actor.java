@@ -24,18 +24,18 @@ public class Actor extends Unit implements IMove{
 
     @Override
     public List<Point> move(int rowsPosition, int colsPosition) {
-        return movementController.move(this, new Point(rowsPosition, colsPosition), this.getSpeed());
+        return movementController.move(this, new Point(rowsPosition, colsPosition), this.getMovementDistance());
     }
 
     @Override
     public List<Point> moveToAttackRange(IMove movable) {
         int range = this._getClass().getRange();
-        return movementController.moveToAttackRange(this, movable, this.speed, range);
+        return movementController.moveToAttackRange(this, movable, this.movementDistance, range);
     }
 
     @Override
     public List<Point> follow(IMove move) {
-        return movementController.follow(this, move, this.getSpeed());
+        return movementController.follow(this, move, this.getMovementDistance());
     }
 
     @Override
@@ -51,12 +51,12 @@ public class Actor extends Unit implements IMove{
     @Override
     public List<Point> moveToAttackRange(IUnit unit) {
         int range = this._getClass().getRange();
-        return movementController.moveToAttackRange(this, unit.getMovable(), this.speed, range);
+        return movementController.moveToAttackRange(this, unit.getMovable(), this.movementDistance, range);
     }
 
     @Override
     public List<Point> follow(IUnit unit) {
-        return  movementController.follow(this, unit.getMovable(), this.getSpeed());
+        return  movementController.follow(this, unit.getMovable(), this.getMovementDistance());
     }
 
 }

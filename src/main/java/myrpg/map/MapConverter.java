@@ -13,7 +13,12 @@ public class MapConverter {
         for(int i = 0; i < map.getHeight(); i++){
             for(int j = 0; j < map.getWidth(); j++){
 //                if(!map.isAccessibleByUnit(i,j))
-//                    continue;
+//                    continue;int
+//                int ind = i*map.getWidth()+j;
+//                if(ind==97)
+//                {
+//                    int a=0;
+//                }
                 //right
                 if(j+1 < map.getWidth() && map.isAccessibleByUnit(i,j+1))
                     graph.addEdge(i, j, i, j+1);

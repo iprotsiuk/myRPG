@@ -16,7 +16,7 @@ public interface IUnit extends Comparable<IUnit> {
     int getCurrentHP();
     int getCurrentMagicalResistance();
     int getBaseHp();
-    int getSpeed();
+    int getMovementDistance();
     void setFocusTarget(IUnit target);
     void attackTarget();
     int getCurrentAttack(); //including buffs;

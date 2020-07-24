@@ -17,7 +17,7 @@ public class Unit implements IUnit{
     int expCost;
 
     int level;
-    int speed;
+    int movementDistance;
     int damage;
     IRace _race;
     IClass _class;
@@ -69,8 +69,8 @@ public class Unit implements IUnit{
     }
 
     @Override
-    public int getSpeed() {
-        return this.speed;
+    public int getMovementDistance() {
+        return this.movementDistance;
     }
 
     @Override
@@ -131,9 +131,6 @@ public class Unit implements IUnit{
         }
     }
 
-
-
-
     @Override
     public List<Effect> getEffectList() {
         return null;
@@ -164,13 +161,13 @@ public class Unit implements IUnit{
 
     @Override
     public boolean increaseSpeed(int val) {
-        this.speed += val;
+        this.movementDistance += val;
         return false;
     }
 
     @Override
     public boolean decreaseSpeed(int val) {
-        this.speed -= val;
+        this.movementDistance -= val;
         return true;
     }
 

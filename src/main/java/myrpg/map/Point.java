@@ -22,4 +22,12 @@ public class Point {
         double colsDelta = Math.pow((p2.getColPosition() - p1.getColPosition()), 2);
         return Math.sqrt(rowsDelta+colsDelta);
     }
+
+    @Override
+    public String toString(){
+        String ans = "";
+        ans+= "[" + rowPosition;
+        ans+= ":" + colPosition + "]";
+        return ans;
+    }
 }
