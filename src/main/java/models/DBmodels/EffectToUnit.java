@@ -1,19 +1,22 @@
 package models.DBmodels;
 
-import models.GAMEmodels.effects.Effect;
+
 
 import javax.persistence.*;
-@Entity(name = "EffectToUnit")
+import java.io.Serializable;
+
+@Entity//(name = "EffectToUnit")
 @Table(name = "effect_to_unit")
-public class EffectToUnit {
+public class EffectToUnit implements Serializable {
+
+        @EmbeddedId
+        EffectToUnitId effectToUnitId;
 
         @ManyToOne
-        @MapsId("unitId")
-        @JoinColumn(name = "unitId")
+        @JoinColumn(name = "unitId", referencedColumnName = "id")
         Unit unit;
 
         @ManyToOne
-        @MapsId("effectId")
-        @JoinColumn(name = "effectId")
+        @JoinColumn(name = "effectId", referencedColumnName = "id")
         Effect effect;
 }

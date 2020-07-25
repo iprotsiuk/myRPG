@@ -1,15 +1,19 @@
 package models.DBmodels;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
-public class Player {
+public class Player implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     int id;
+
+    @OneToMany(targetEntity = gameCharacter.class)
+    Set<gameCharacter> gameCharacter;
+
 
     String login;
     String password;

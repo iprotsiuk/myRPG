@@ -3,18 +3,18 @@ package models.DBmodels;
 import javax.persistence.*;
 
 
-@Entity(name = "ItemToLocation")
+@Entity//(name = "ItemToLocation")
 @Table(name = "item_to_location")
 public class ItemToLocation {
 
+    @EmbeddedId
+    ItemToLocationId itemToLocationId;
 
     @ManyToOne
-    @MapsId("itemId")
-    @JoinColumn(name = "itemId")
+    @JoinColumn(name = "itemId", referencedColumnName = "id")
     Item item;
 
     @ManyToOne
-    @MapsId("locationId")
-    @JoinColumn(name = "locationId")
+    @JoinColumn(name = "locationId", referencedColumnName = "id")
     Location location;
 }

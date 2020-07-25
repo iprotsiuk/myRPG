@@ -9,17 +9,21 @@ import javax.persistence.*;
 public class EquippedItem {
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     int id;
 
     @ManyToOne
+    @JoinColumn(name = "unitId", referencedColumnName = "id")
     Unit unit;
 
     @ManyToOne
+    @JoinColumn(name = "itemId", referencedColumnName = "id")
     Item item;
 
-
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
     Slot gearSlot;
 
 

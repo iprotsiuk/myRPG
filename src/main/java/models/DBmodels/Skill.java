@@ -1,16 +1,14 @@
 package models.DBmodels;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.io.Serializable;
 
 @Entity
-public class Skill {
+public class Skill  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     int id;
 
-    @ManyToMany
-    Set<Race> skillRaces;
 
     String name;
     int level;

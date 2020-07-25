@@ -16,6 +16,7 @@
         <!-- Assume test is the database name -->
 
         <property name = "hibernate.connection.url">
+<!--            jdbc:mysql://localhost/thegame-->
             jdbc:mysql://localhost/myrpg
         </property>
 
@@ -27,6 +28,32 @@
             admin
         </property>
 
+        <mapping class="models.DBmodels.Class" />
+<!--        <mapping class="models.DBmodels._races.Race" />-->
+        <mapping class="models.DBmodels.Inventory" />
+        <mapping class="models.DBmodels.EffectToItem" />
+        <mapping class="models.DBmodels.EffectToSkill" />
+        <mapping class="models.DBmodels.EffectToUnit" />
+        <mapping class="models.DBmodels.EquippedItem" />
+        <mapping class="models.DBmodels.Item" />
+        <mapping class="models.DBmodels.ItemToLocation" />
+        <mapping class="models.DBmodels.ItemToSlot" />
+        <mapping class="models.DBmodels.Location" />
+        <mapping class="models.DBmodels.LocationToMap" />
+        <mapping class="models.DBmodels.Map" />
+        <mapping class="models.DBmodels.Mob" />
+        <mapping class="models.DBmodels.Obstacle" />
+        <mapping class="models.DBmodels.ObstacleToLocation" />
+        <mapping class="models.DBmodels.Player" />
+        <mapping class="models.DBmodels.Profile" />
+        <mapping class="models.DBmodels.Race" />
+        <mapping class="models.DBmodels.Skill" />
+        <mapping class="models.DBmodels.SkillToClass" />
+        <mapping class="models.DBmodels.Slot" />
+        <mapping class="models.DBmodels.Unit" />
+        <mapping class="models.DBmodels.UnitToSkill" />
+        <mapping class="models.DBmodels.gameCharacter" />
+        <mapping class="models.DBmodels.Effect" />
 
     </session-factory>
 </hibernate-configuration>

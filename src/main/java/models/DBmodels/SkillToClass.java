@@ -1,12 +1,11 @@
 package models.DBmodels;
 
-import models.DBmodels._classes.Class;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
-@Entity(name = "SkillToClass")
+@Entity//(name = "SkillToClass")
 @Table(name = "skill_to_class")
-public class SkillToClass {
+public class SkillToClass  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -15,14 +14,45 @@ public class SkillToClass {
     int level;
 
     @ManyToOne
-    @MapsId("skillId")
-    @JoinColumn(name = "skillId")
+    @JoinColumn(name = "skillId",referencedColumnName = "id")
     Skill skill;
 
     @ManyToOne
-    @MapsId("classId")
-    @JoinColumn(name = "classId")
+    @JoinColumn(name = "classId", referencedColumnName = "id")
     Class _class;
 
+    public SkillToClass() {
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
+
+    public Class get_class() {
+        return _class;
+    }
+
+    public void set_class(Class _class) {
+        this._class = _class;
+    }
 }

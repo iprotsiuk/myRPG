@@ -1,18 +1,21 @@
 package models.DBmodels;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
-@Entity(name = "ObstacleToLocation")
+@Entity//(name = "ObstacleToLocation")
 @Table(name = "obstacle_to_location")
-public class LocationToMap {
+public class LocationToMap implements Serializable {
+
+    @EmbeddedId
+    LocationToMapId locationToMapId;
+
     @ManyToOne
-    @MapsId("locationId")
-    @JoinColumn(name = "locationId")
+    @JoinColumn(name = "locationId", referencedColumnName = "id")
     Location location;
 
     @ManyToOne
-    @MapsId("mapId")
-    @JoinColumn(name = "mapId")
+    @JoinColumn(referencedColumnName = "id")
     Map map;
 }

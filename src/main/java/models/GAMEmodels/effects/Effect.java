@@ -1,6 +1,7 @@
 package models.GAMEmodels.effects;
 
 public class Effect implements IEffect {
+
     EffectType effectType;
     Damage damage;
     Resistance resistance;

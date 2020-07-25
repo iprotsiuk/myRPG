@@ -2,17 +2,22 @@ package models.DBmodels;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
-public class Slot implements Serializable {
+public class gameCharacter implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     int id;
+
     String name;
 
-    public Slot() {
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    Unit unit;
+
+
+    public gameCharacter() {
     }
 
     public int getId() {
@@ -23,6 +28,7 @@ public class Slot implements Serializable {
         this.id = id;
     }
 
+
     public String getName() {
         return name;
     }
@@ -31,9 +37,12 @@ public class Slot implements Serializable {
         this.name = name;
     }
 
-    //    @ManyToOne
-//    Set<Item> possibleSlots;
+    public Unit getUnit() {
+        return unit;
+    }
 
-
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
 
 }

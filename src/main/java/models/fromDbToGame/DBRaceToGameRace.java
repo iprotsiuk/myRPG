@@ -1,6 +1,8 @@
 package models.fromDbToGame;
 
-import models.DBmodels._races.Race;
+//import models.DBmodels._races.Race;
+
+import models.DBmodels.Race;
 
 public class DBRaceToGameRace {
     Race race;

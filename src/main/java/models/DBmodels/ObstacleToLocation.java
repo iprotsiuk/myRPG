@@ -1,21 +1,41 @@
 package models.DBmodels;
 
 
-import models.DBmodels._classes.Class;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
-@Entity(name = "ObstacleToLocation")
+@Entity//(name = "ObstacleToLocation")
 @Table(name = "obstacle_to_location")
-public class ObstacleToLocation {
+public class ObstacleToLocation implements Serializable {
+
+    @EmbeddedId
+    ObstacleToLocationId obstacleToLocationId;
 
     @ManyToOne
-    @MapsId("obstacleId")
-    @JoinColumn(name = "obstacleId")
+    @JoinColumn(name = "obstacleId", referencedColumnName = "id")
     Obstacle obstacle;
 
     @ManyToOne
-    @MapsId("locationId")
-    @JoinColumn(name = "locationId")
+    @JoinColumn(name = "locationId", referencedColumnName = "id")
     Location location;
+
+
+    public ObstacleToLocation() {
+    }
+
+    public Obstacle getObstacle() {
+        return obstacle;
+    }
+
+    public void setObstacle(Obstacle obstacle) {
+        this.obstacle = obstacle;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }
