@@ -11,19 +11,17 @@ public class EquippedItem {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     @ManyToOne
-    @JoinColumn(name = "unitId", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     Unit unit;
 
-    @ManyToOne
-    @JoinColumn(name = "itemId", referencedColumnName = "id")
+    @OneToOne
     Item item;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+    @OneToOne
     Slot gearSlot;
 
 

@@ -1,20 +1,21 @@
 package models.DBmodels;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
 public class Profile {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
+    @Column(unique = true)
     String email;
     String fname;
     String lname;
+
+    @OneToOne
+    Player player;
 
     public Profile() {
     }
@@ -49,5 +50,13 @@ public class Profile {
 
     public void setLname(String lname) {
         this.lname = lname;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

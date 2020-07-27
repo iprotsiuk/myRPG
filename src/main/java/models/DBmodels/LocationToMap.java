@@ -8,13 +8,15 @@ import java.io.Serializable;
 @Table(name = "obstacle_to_location")
 public class LocationToMap implements Serializable {
 
-    @EmbeddedId
-    LocationToMapId locationToMapId;
+//    @EmbeddedId
+//    LocationToMapId locationToMapId;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "locationId", referencedColumnName = "id")
+    @JoinColumn( referencedColumnName = "id")
     Location location;
 
+    @Id
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     Map map;

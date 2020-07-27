@@ -3,17 +3,18 @@ package models.DBmodels;
 import javax.persistence.*;
 import java.io.Serializable;
 
+// Экран выбора перса в вове
 @Entity
 public class gameCharacter implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String name;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+    String name; // name перса
+
+    @OneToOne // сам перс
     Unit unit;
 
 

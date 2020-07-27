@@ -8,15 +8,17 @@ import java.io.Serializable;
 @Table(name = "obstacle_to_location")
 public class ObstacleToLocation implements Serializable {
 
-    @EmbeddedId
-    ObstacleToLocationId obstacleToLocationId;
+//    @EmbeddedId
+//    ObstacleToLocationId obstacleToLocationId;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "obstacleId", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     Obstacle obstacle;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "locationId", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     Location location;
 
 

@@ -8,14 +8,43 @@ import java.io.Serializable;
 @Table(name = "effect_to_skill")
 public class EffectToSkill implements Serializable {
 
-        @EmbeddedId
-        EffectToSkillId effectToSkillId;
+//        @EmbeddedId
+//        EffectToSkillId effectToSkillId;
 
+        @Id
         @ManyToOne
-        @JoinColumn(name = "skillId")
+        @JoinColumn(referencedColumnName = "id")
         Skill skill;
 
+        @Id
         @ManyToOne
-        @JoinColumn(name = "effectId")
+        @JoinColumn(referencedColumnName = "id")
         Effect effect;
+
+        public EffectToSkill() {
+        }
+
+        public EffectToSkill(Skill skill, Effect effect) {
+                this.skill = skill;
+                this.effect = effect;
+        }
+
+
+
+
+        public Skill getSkill() {
+                return skill;
+        }
+
+        public void setSkill(Skill skill) {
+                this.skill = skill;
+        }
+
+        public Effect getEffect() {
+                return effect;
+        }
+
+        public void setEffect(Effect effect) {
+                this.effect = effect;
+        }
 }

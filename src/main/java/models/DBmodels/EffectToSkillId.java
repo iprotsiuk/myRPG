@@ -18,6 +18,7 @@ public class EffectToSkillId implements Serializable {
     public EffectToSkillId() {
     }
 
+
     public int getSkillId() {
         return skillId;
     }

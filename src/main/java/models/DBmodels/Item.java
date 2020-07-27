@@ -9,7 +9,7 @@ import java.util.Set;
 public class Item implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     @OneToMany(targetEntity = Slot.class)

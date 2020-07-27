@@ -8,14 +8,16 @@ import java.io.Serializable;
 @Table(name = "item_to_slot")
 public class ItemToSlot implements Serializable {
 
-    @EmbeddedId
-    ItemToSlotId itemToSlotId;
+//    @EmbeddedId
+//    ItemToSlotId itemToSlotId;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "itemId", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     Item item;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "slotId", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     Slot slot;
 }

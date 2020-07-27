@@ -8,8 +8,10 @@ import java.util.Set;
 public class Slot implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+
+    @Column(unique = true)
     String name;
 
     public Slot() {

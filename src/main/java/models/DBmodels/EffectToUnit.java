@@ -9,14 +9,16 @@ import java.io.Serializable;
 @Table(name = "effect_to_unit")
 public class EffectToUnit implements Serializable {
 
-        @EmbeddedId
-        EffectToUnitId effectToUnitId;
+//        @EmbeddedId
+//        EffectToUnitId effectToUnitId;
 
+        @Id
         @ManyToOne
-        @JoinColumn(name = "unitId", referencedColumnName = "id")
+        @JoinColumn(referencedColumnName = "id")
         Unit unit;
 
+        @Id
         @ManyToOne
-        @JoinColumn(name = "effectId", referencedColumnName = "id")
+        @JoinColumn(referencedColumnName = "id")
         Effect effect;
 }

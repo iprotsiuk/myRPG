@@ -16,8 +16,9 @@
         <!-- Assume test is the database name -->
 
         <property name = "hibernate.connection.url">
+<!--            jdbc:mysql://localhost/myrpg-->
 <!--            jdbc:mysql://localhost/thegame-->
-            jdbc:mysql://localhost/myrpg
+            jdbc:mysql://localhost/thegame
         </property>
 
         <property name = "hibernate.connection.username">
@@ -51,9 +52,11 @@
         <mapping class="models.DBmodels.SkillToClass" />
         <mapping class="models.DBmodels.Slot" />
         <mapping class="models.DBmodels.Unit" />
+        <mapping class="models.DBmodels.UnitTemplate" />
         <mapping class="models.DBmodels.UnitToSkill" />
         <mapping class="models.DBmodels.gameCharacter" />
         <mapping class="models.DBmodels.Effect" />
+
 
     </session-factory>
 </hibernate-configuration>

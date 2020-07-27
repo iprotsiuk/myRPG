@@ -6,12 +6,13 @@ import java.util.Set;
 @Entity
 public class Race {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     @ManyToMany
     Set<Skill> raceSkills;
 
+    @Column(unique = true)
     String name;
     double strMultiplier;
     double agiMultiplier;
@@ -67,5 +68,14 @@ public class Race {
 
     public void setStaMultiplier(double staMultiplier) {
         this.staMultiplier = staMultiplier;
+    }
+
+
+    public Set<Skill> getRaceSkills() {
+        return raceSkills;
+    }
+
+    public void setRaceSkills(Set<Skill> raceSkills) {
+        this.raceSkills = raceSkills;
     }
 }

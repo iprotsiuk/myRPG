@@ -1,21 +1,28 @@
 package models.DBmodels;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 public class Unit  implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    int raceId;
-    int classId;
-    int template;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    Race race;
+
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    Class _class;
+
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    UnitTemplate unitTemplate;
+
+
+
     long exp;
     int currentMana;
     int currentHp;
@@ -31,28 +38,28 @@ public class Unit  implements Serializable {
         this.id = id;
     }
 
-    public int getRaceId() {
-        return raceId;
+    public Race getRace() {
+        return race;
     }
 
-    public void setRaceId(int raceId) {
-        this.raceId = raceId;
+    public void setRaceId(Race raceId) {
+        this.race = raceId;
     }
 
-    public int getClassId() {
-        return classId;
+    public Class getClassObj() {
+        return _class;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
+    public void setClassId(Class classId) {
+        this._class = classId;
     }
 
-    public int getTemplate() {
-        return template;
+    public UnitTemplate getTemplate() {
+        return unitTemplate;
     }
 
-    public void setTemplate(int template) {
-        this.template = template;
+    public void setTemplate(UnitTemplate template) {
+        this.unitTemplate = template;
     }
 
     public long getExp() {
@@ -73,6 +80,18 @@ public class Unit  implements Serializable {
 
     public int getCurrentHp() {
         return currentHp;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
+
+    public Class get_class() {
+        return _class;
+    }
+
+    public void set_class(Class _class) {
+        this._class = _class;
     }
 
     public void setCurrentHp(int currentHp) {

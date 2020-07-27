@@ -6,11 +6,12 @@ import java.io.Serializable;
 @Entity
 public class Skill  implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
 
     String name;
+
     int level;
 
     public Skill() {

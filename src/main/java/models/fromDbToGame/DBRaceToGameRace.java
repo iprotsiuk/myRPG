@@ -13,7 +13,7 @@ public class DBRaceToGameRace {
     }
 
 
-    public models.GAMEmodels._races.Race fromDBToGame(){
+    public models.GAMEmodels._races.IRace fromDBToGame(){
         return new models.GAMEmodels._races.Race(race.getId(), race.getStrMultiplier(), race.getIntMultiplier(), race.getAgiMultiplier(), race.getStaMultiplier());
     }
 

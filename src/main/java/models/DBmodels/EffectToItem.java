@@ -7,14 +7,16 @@ import javax.persistence.*;
 @Entity//(name = "EffectToItem")
 @Table(name = "effect_to_item")
 public class EffectToItem {
-        @EmbeddedId
-        EffectToItemId effectToItemId;
+//        @EmbeddedId
+//        EffectToItemId effectToItemId;
 
+        @Id
         @ManyToOne
-        @JoinColumn(name = "itemId", referencedColumnName = "id")
+        @JoinColumn(referencedColumnName = "id")
         Item item;
 
+        @Id
         @ManyToOne
-        @JoinColumn(name = "effectId", referencedColumnName = "id")
+        @JoinColumn(referencedColumnName = "id")
         Effect effect;
 }

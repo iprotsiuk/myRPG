@@ -14,11 +14,11 @@ public class SkillToClass  implements Serializable {
     int level;
 
     @ManyToOne
-    @JoinColumn(name = "skillId",referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     Skill skill;
 
     @ManyToOne
-    @JoinColumn(name = "classId", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     Class _class;
 
     public SkillToClass() {

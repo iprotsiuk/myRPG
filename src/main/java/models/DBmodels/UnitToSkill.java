@@ -8,15 +8,17 @@ import java.io.Serializable;
 @Table(name = "unit_to_skill")
 public class UnitToSkill implements Serializable {
 
-    @EmbeddedId
-    private UnitToSkillId id;
+//    @EmbeddedId
+//    private UnitToSkillId id;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "skillId", referencedColumnName = "id")
+    @JoinColumn( referencedColumnName = "id")
     Skill skill;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "unitId", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     Unit unit;
 
 
@@ -24,13 +26,13 @@ public class UnitToSkill implements Serializable {
     }
 
 
-    public UnitToSkillId getId() {
-        return id;
-    }
-
-    public void setId(UnitToSkillId id) {
-        this.id = id;
-    }
+//    public UnitToSkillId getId() {
+//        return id;
+//    }
+//
+//    public void setId(UnitToSkillId id) {
+//        this.id = id;
+//    }
 
     public Skill getSkill() {
         return skill;

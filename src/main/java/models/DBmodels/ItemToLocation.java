@@ -7,14 +7,16 @@ import javax.persistence.*;
 @Table(name = "item_to_location")
 public class ItemToLocation {
 
-    @EmbeddedId
-    ItemToLocationId itemToLocationId;
+//    @EmbeddedId
+//    ItemToLocationId itemToLocationId;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "itemId", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     Item item;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "locationId", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     Location location;
 }
