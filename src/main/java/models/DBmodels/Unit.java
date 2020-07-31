@@ -4,9 +4,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "unit")
 public class Unit  implements Serializable {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     @ManyToOne
@@ -17,9 +19,7 @@ public class Unit  implements Serializable {
     @JoinColumn(referencedColumnName = "id")
     Class _class;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
-    UnitTemplate unitTemplate;
+
 
 
 
@@ -52,14 +52,6 @@ public class Unit  implements Serializable {
 
     public void setClassId(Class classId) {
         this._class = classId;
-    }
-
-    public UnitTemplate getTemplate() {
-        return unitTemplate;
-    }
-
-    public void setTemplate(UnitTemplate template) {
-        this.unitTemplate = template;
     }
 
     public long getExp() {

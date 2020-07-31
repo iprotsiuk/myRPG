@@ -11,8 +11,8 @@ public class Player implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @OneToMany(targetEntity = gameCharacter.class)
-    Set<gameCharacter> gameCharacter;
+    @OneToMany(targetEntity = GameCharacter.class)
+    Set<GameCharacter> gameCharacter;
 
     @Column(unique = true)
     String login;
@@ -48,11 +48,11 @@ public class Player implements Serializable {
         this.password = password;
     }
 
-    public Set<models.DBmodels.gameCharacter> getGameCharacter() {
+    public Set<GameCharacter> getGameCharacter() {
         return gameCharacter;
     }
 
-    public void setGameCharacter(Set<models.DBmodels.gameCharacter> gameCharacter) {
+    public void setGameCharacter(Set<GameCharacter> gameCharacter) {
         this.gameCharacter = gameCharacter;
     }
 

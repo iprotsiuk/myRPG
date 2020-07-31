@@ -1,10 +1,11 @@
 package models.DBmodels;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-public class Race {
+public class Race implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
@@ -14,10 +15,11 @@ public class Race {
 
     @Column(unique = true)
     String name;
-    double strMultiplier;
-    double agiMultiplier;
-    double intMultiplier;
-    double staMultiplier;
+    int strength;
+    int agility;
+    int intellect;
+    int stamina;
+
 
     public Race() {
     }
@@ -38,38 +40,37 @@ public class Race {
         this.name = name;
     }
 
-    public double getStrMultiplier() {
-        return strMultiplier;
+    public int getStrength() {
+        return strength;
     }
 
-    public void setStrMultiplier(double strMultiplier) {
-        this.strMultiplier = strMultiplier;
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
-    public double getAgiMultiplier() {
-        return agiMultiplier;
+    public int getAgility() {
+        return agility;
     }
 
-    public void setAgiMultiplier(double agiMultiplier) {
-        this.agiMultiplier = agiMultiplier;
+    public void setAgility(int agility) {
+        this.agility = agility;
     }
 
-    public double getIntMultiplier() {
-        return intMultiplier;
+    public int getIntellect() {
+        return intellect;
     }
 
-    public void setIntMultiplier(double intMultiplier) {
-        this.intMultiplier = intMultiplier;
+    public void setIntellect(int intellect) {
+        this.intellect = intellect;
     }
 
-    public double getStaMultiplier() {
-        return staMultiplier;
+    public int getStamina() {
+        return stamina;
     }
 
-    public void setStaMultiplier(double staMultiplier) {
-        this.staMultiplier = staMultiplier;
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
     }
-
 
     public Set<Skill> getRaceSkills() {
         return raceSkills;

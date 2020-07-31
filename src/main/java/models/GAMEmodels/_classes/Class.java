@@ -7,10 +7,7 @@ public class Class implements IClass{
     int id;
 
     String name;
-    int stamina;
-    int strength;
-    int agility;
-    int intellect;
+
     double strMultiplier;
     double intMultiplier;
     double agiMultiplier;
@@ -27,37 +24,7 @@ public class Class implements IClass{
         this.name = name;
     }
 
-    public int getStamina() {
-        return stamina;
-    }
 
-    public void setStamina(int stamina) {
-        this.stamina = stamina;
-    }
-
-    public int getStrength() {
-        return strength;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-    public int getAgility() {
-        return agility;
-    }
-
-    public void setAgility(int agility) {
-        this.agility = agility;
-    }
-
-    public int getIntellect() {
-        return intellect;
-    }
-
-    public void setIntellect(int intellect) {
-        this.intellect = intellect;
-    }
 
     public double getStrMultiplier() {
         return strMultiplier;
@@ -101,20 +68,7 @@ public class Class implements IClass{
         return name;
     }
 
-    @Override
-    public int getStat(Stat stat) {
-        switch (stat){
-            case Strength:
-                return this.strength;
-            case Agility:
-                return this.agility;
-            case Stamina:
-                return this.stamina;
-            case Intellect:
-                return this.intellect;
-        }
-        return -1;
-    }
+
 
     @Override
     public double getStatMultiplier(Stat stat) {

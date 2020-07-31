@@ -8,6 +8,5 @@ public interface IClass {
 
     String getName();
 
-    int getStat(Stat stat);
     double getStatMultiplier(Stat stat);
 }

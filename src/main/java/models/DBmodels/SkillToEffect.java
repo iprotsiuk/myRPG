@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Entity//(name = "EffectToSkill")
 @Table(name = "effect_to_skill")
-public class EffectToSkill implements Serializable {
+public class SkillToEffect implements Serializable {
 
 //        @EmbeddedId
 //        EffectToSkillId effectToSkillId;
@@ -21,12 +21,17 @@ public class EffectToSkill implements Serializable {
         @JoinColumn(referencedColumnName = "id")
         Effect effect;
 
-        public EffectToSkill() {
+        int duration;
+        String description;
+
+        public SkillToEffect() {
         }
 
-        public EffectToSkill(Skill skill, Effect effect) {
+        public SkillToEffect(Skill skill, Effect effect, int duration, String description) {
                 this.skill = skill;
                 this.effect = effect;
+                this.duration = duration;
+                this.description = description;
         }
 
 

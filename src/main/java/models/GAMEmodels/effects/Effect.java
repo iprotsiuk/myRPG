@@ -3,38 +3,16 @@ package models.GAMEmodels.effects;
 public class Effect implements IEffect {
 
     EffectType effectType;
-    Damage damage;
-    Resistance resistance;
-    Armor armor;
-    Heal heal;
-    int duration;
+    boolean magicalEffect;
+    int amount; // amount of heal/damage/whatever
+    TargetEffect target; // -1 self; 0 area; 1 target;
 
 
-
-
-    public Effect(EffectType effectType, int duration) {
+    public Effect(EffectType effectType, boolean magicalEffect, int amount, TargetEffect target) {
         this.effectType = effectType;
-        this.duration = duration;
-    }
-    public Effect(EffectType effectType, int duration, Damage damage) {
-        this.effectType = effectType;
-        this.duration = duration;
-        this.damage = damage;
-    }
-    public Effect(EffectType effectType, int duration, Resistance resistance) {
-        this.effectType = effectType;
-        this.duration = duration;
-        this.resistance = resistance;
-    }
-    public Effect(EffectType effectType, int duration, Armor armor) {
-        this.effectType = effectType;
-        this.duration = duration;
-        this.armor = armor;
-    }
-    public Effect(EffectType effectType, int duration, Heal heal) {
-        this.effectType = effectType;
-        this.duration = duration;
-        this.heal = heal;
+        this.magicalEffect = magicalEffect;
+        this.amount = amount;
+        this.target = target;
     }
 
     @Override
@@ -42,52 +20,31 @@ public class Effect implements IEffect {
         return effectType;
     }
 
-    @Override
-    public int getDuration() {
-        return duration;
-    }
-
-    @Override
-    public Damage getDamage() {
-        return damage;
-    }
-
-    @Override
-    public Heal getHeal() {
-        return heal;
-    }
-
-    @Override
-    public Resistance getResistance() {
-        return resistance;
-    }
-
-    public Armor getArmor() {
-        return armor;
-    }
-
-
     public void setEffectType(EffectType effectType) {
         this.effectType = effectType;
     }
 
-    public void setDamage(Damage damage) {
-        this.damage = damage;
+    public boolean isMagicalEffect() {
+        return magicalEffect;
     }
 
-    public void setResistance(Resistance resistance) {
-        this.resistance = resistance;
+    public void setMagicalEffect(boolean magicalEffect) {
+        this.magicalEffect = magicalEffect;
     }
 
-    public void setArmor(Armor armor) {
-        this.armor = armor;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setHeal(Heal heal) {
-        this.heal = heal;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public TargetEffect getTarget() {
+        return target;
+    }
+
+    public void setTarget(TargetEffect target) {
+        this.target = target;
     }
 }

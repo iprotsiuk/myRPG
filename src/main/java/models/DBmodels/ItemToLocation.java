@@ -1,11 +1,12 @@
 package models.DBmodels;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity//(name = "ItemToLocation")
 @Table(name = "item_to_location")
-public class ItemToLocation {
+public class ItemToLocation implements Serializable {
 
 //    @EmbeddedId
 //    ItemToLocationId itemToLocationId;

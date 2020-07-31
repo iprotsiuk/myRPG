@@ -2,11 +2,12 @@ package models.DBmodels;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity//(name = "EffectToItem")
 @Table(name = "effect_to_item")
-public class EffectToItem {
+public class EffectToItem implements Serializable {
 //        @EmbeddedId
 //        EffectToItemId effectToItemId;
 

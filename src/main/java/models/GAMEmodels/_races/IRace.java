@@ -8,7 +8,6 @@ public interface IRace {
     int getId();
 
     String getName();
-
-    double getStatMultiplier(Stat stat);
+    int getStat(Stat stat);
 
 }

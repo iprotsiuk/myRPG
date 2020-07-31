@@ -1,8 +1,7 @@
 package models.GAMEmodels.effects;
 
 public enum EffectType{
-    slow,
-    haste,
+    speed,
     root,
     stun,
     reflect,
@@ -22,5 +21,6 @@ public enum EffectType{
     reducedArmor,
     increasedArmor,
     reducedResistance,
-    increasedResistance
+    increasedResistance,
+    ERROR
 }

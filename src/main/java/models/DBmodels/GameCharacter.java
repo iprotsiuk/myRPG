@@ -3,9 +3,9 @@ package models.DBmodels;
 import javax.persistence.*;
 import java.io.Serializable;
 
-// Экран выбора перса в вове
+// Экран выбора перса как в вове
 @Entity
-public class gameCharacter implements Serializable {
+public class GameCharacter implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class gameCharacter implements Serializable {
     Unit unit;
 
 
-    public gameCharacter() {
+    public GameCharacter() {
     }
 
     public int getId() {

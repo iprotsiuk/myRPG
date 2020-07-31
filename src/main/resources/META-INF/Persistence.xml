@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+
+http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+
+             version="2.1">
+
+
+<persistence-unit name = "my_unit" transaction-type = "RESOURCE_LOCAL">
+        <class>models.DBmodels.Class</class>
+        <class>models.DBmodels.Inventory</class>
+        <class>models.DBmodels.EffectToItem</class>
+        <class>models.DBmodels.SkillToEffect</class>
+        <class>models.DBmodels.EffectToUnit</class>
+        <class>models.DBmodels.EquippedItem</class>
+        <class>models.DBmodels.Item</class>
+        <class>models.DBmodels.ItemToLocation</class>
+        <class>models.DBmodels.ItemToSlot</class>
+        <class>models.DBmodels.Location</class>
+        <class>models.DBmodels.LocationToMap</class>
+        <class>models.DBmodels.Map</class>
+        <class>models.DBmodels.Mob</class>
+        <class>models.DBmodels.Obstacle</class>
+        <class>models.DBmodels.ObstacleToLocation</class>
+        <class>models.DBmodels.Player</class>
+        <class>models.DBmodels.Profile</class>
+        <class>models.DBmodels.Race</class>
+        <class>models.DBmodels.Skill</class>
+        <class>models.DBmodels.SkillToClass</class>
+        <class>models.DBmodels.Slot</class>
+        <class>models.DBmodels.Unit</class>
+        <class>models.DBmodels.UnitToSkill</class>
+        <class>models.DBmodels.GameCharacter</class>
+        <class>models.DBmodels.Effect</class>
+
+        <properties>
+            <property name = "javax.persistence.jdbc.url" value = "jdbc:mysql://localhost/thegame"/>
+            <property name = "javax.persistence.jdbc.user" value = "root"/>
+            <property name = "javax.persistence.jdbc.password" value = "admin"/>
+            <property name = "javax.persistence.jdbc.driver"
+                      value="org.mariadb.jdbc.Driver"/>
+<!--            <property name = "eclipselink.logging.level" value = "FINE"/>-->
+<!--            <property name = "eclipselink.ddl-generation"-->
+<!--                      value="create-tables"/>-->
+        </properties>
+
+    </persistence-unit>
+</persistence>

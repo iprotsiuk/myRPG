@@ -1,9 +1,10 @@
 package models.DBmodels;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Inventory {
+public class Inventory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;

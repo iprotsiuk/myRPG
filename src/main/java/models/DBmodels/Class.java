@@ -1,9 +1,6 @@
 package models.DBmodels;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -11,11 +8,9 @@ public class Class implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
+
+    @Column(unique = true)
     String name;
-    int stamina;
-    int strength;
-    int agility;
-    int intellect;
     double strMultiplier;
     double intMultiplier;
     double agiMultiplier;
@@ -38,38 +33,6 @@ public class Class implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getStamina() {
-        return stamina;
-    }
-
-    public void setStamina(int stamina) {
-        this.stamina = stamina;
-    }
-
-    public int getStrength() {
-        return strength;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-    public int getAgility() {
-        return agility;
-    }
-
-    public void setAgility(int agility) {
-        this.agility = agility;
-    }
-
-    public int getIntellect() {
-        return intellect;
-    }
-
-    public void setIntellect(int intellect) {
-        this.intellect = intellect;
     }
 
     public double getStrMultiplier() {

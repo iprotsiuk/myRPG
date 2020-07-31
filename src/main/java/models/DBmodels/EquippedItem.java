@@ -3,10 +3,11 @@ package models.DBmodels;
 import org.apache.catalina.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
-public class EquippedItem {
+public class EquippedItem implements Serializable {
 
 
 
