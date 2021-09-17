@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
 
 
-    <!-- maven-compiler-plugin -->
     <build>
         <plugins>
             <plugin>
@@ -31,7 +30,6 @@
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
