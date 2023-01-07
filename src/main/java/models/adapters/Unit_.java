@@ -1,4 +1,4 @@
-package models.fromDbToGame;
+package models.adapters;
 
 import models.DBmodels.Unit;
 import models.GAMEmodels.IUnit;

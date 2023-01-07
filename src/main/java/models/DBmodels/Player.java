@@ -18,10 +18,25 @@ public class Player implements Serializable {
     String login;
     String password;
 
+    @Column(unique = true)
+    String token;
+
     @OneToOne
     Profile profile;
 
+
+
+
     public Player() {
+    }
+
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public int getId() {
@@ -54,6 +69,10 @@ public class Player implements Serializable {
 
     public void setGameCharacter(Set<GameCharacter> gameCharacter) {
         this.gameCharacter = gameCharacter;
+    }
+
+    public void addCharacter(GameCharacter character){
+        this.gameCharacter.add(character);
     }
 
     public Profile getProfile() {

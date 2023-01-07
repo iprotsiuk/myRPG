@@ -1,12 +1,6 @@
-package models.fromDbToGame;
+package models.adapters;
 
-import models.DBmodels.SkillToEffect;
 import models.DBmodels.Skill;
-import models.GAMEmodels.effects.Effect;
-import models.GAMEmodels.effects.IEffect;
-
-import java.util.LinkedList;
-import java.util.List;
 
 public class Skill_ {
 

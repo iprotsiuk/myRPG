@@ -17,8 +17,12 @@ public class GameCharacter implements Serializable {
     @OneToOne // сам перс
     Unit unit;
 
-
     public GameCharacter() {
+    }
+
+    public GameCharacter(String name, Unit unit) {
+        this.name = name;
+        this.unit = unit;
     }
 
     public int getId() {

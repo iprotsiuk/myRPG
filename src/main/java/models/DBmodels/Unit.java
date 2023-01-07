@@ -20,7 +20,7 @@ public class Unit  implements Serializable {
     Class _class;
 
 
-
+    int FOW;
 
 
     long exp;
@@ -28,6 +28,13 @@ public class Unit  implements Serializable {
     int currentHp;
 
     public Unit() {
+    }
+
+    public Unit(Race race, Class _class, int currentMana, int currentHp) {
+        this.race = race;
+        this._class = _class;
+        this.currentMana = currentMana;
+        this.currentHp = currentHp;
     }
 
     public int getId() {
@@ -42,16 +49,16 @@ public class Unit  implements Serializable {
         return race;
     }
 
-    public void setRaceId(Race raceId) {
-        this.race = raceId;
+    public void setRace(Race race) {
+        this.race = race;
     }
 
-    public Class getClassObj() {
+    public Class get_class() {
         return _class;
     }
 
-    public void setClassId(Class classId) {
-        this._class = classId;
+    public void set_class(Class _class) {
+        this._class = _class;
     }
 
     public long getExp() {
@@ -72,18 +79,6 @@ public class Unit  implements Serializable {
 
     public int getCurrentHp() {
         return currentHp;
-    }
-
-    public void setRace(Race race) {
-        this.race = race;
-    }
-
-    public Class get_class() {
-        return _class;
-    }
-
-    public void set_class(Class _class) {
-        this._class = _class;
     }
 
     public void setCurrentHp(int currentHp) {

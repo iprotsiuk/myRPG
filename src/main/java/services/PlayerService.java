@@ -19,25 +19,18 @@ import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.util.List;
 
-public class PlayerService {
-    EntityManager em;
-    EntityTransaction transaction;
+public class PlayerService extends Service{
 
     public PlayerService(EntityManager em) {
-        this.em = em;
+        super(em);
     }
 
-    private void startTransaction(){
-        transaction = em.getTransaction();
-        if(!transaction.isActive())
-            transaction.begin();
-    }
 
-    public PlayerOrError register(String login, String password){
+    public SuccessOrError register(String login, String password){
         Player player = new Player();
         player.setLogin(login);
         player.setPassword(password);
-
+        player.setToken(TokenGenerator.generateRandomToken_32());
         startTransaction();
 
         try {
@@ -45,14 +38,15 @@ public class PlayerService {
             transaction.commit();
         }catch (ConstraintViolationException e){
             transaction.rollback();
-            return new PlayerOrError(e.getMessage());
+            return new SuccessOrError(e.getMessage());
         }
-        return new PlayerOrError(player);
+        return new SuccessOrError(player);
     }
 
-    public PlayerOrError deletePlayer(String login, String password){
+    public SuccessOrError deletePlayer(String login, String password){
 
         startTransaction();
+
         CriteriaBuilder uslovie = em.getCriteriaBuilder();
         CriteriaQuery<Player> querry = uslovie.createQuery(Player.class);
         Root<Player> tableName = querry.from(Player.class);
@@ -64,31 +58,57 @@ public class PlayerService {
         query.setParameter(uslovieType, login);
         List<Player> result = query.getResultList();
 
-        System.out.println(result.get(0));
+        if(result.size() == 0) {
+            transaction.rollback();
+            return new SuccessOrError("user NOT found (user null)");
+        }
 
-//
-//        if(results.size() == 0) {
-//            transaction.rollback();
-//            return new PlayerOrError("user NOT found (user null)");
-//        }
-//
-//        Player player = results.get(0);
-//
-//        if(player.getPassword().equals(password)){
-//            session.delete(player);
-//            transaction.commit();
-//        }else{
-//            transaction.rollback();
-//            return new PlayerOrError("wrong password");
-//        }
-//
-//        if(criteria.list().size() == 0) {
-//            return new PlayerOrError("user deleted");
-//        }
-//        transaction.rollback();
-//        return new PlayerOrError("user NOT deleted");
-        return null;
+        Player player = result.get(0);
+
+        if(player.getPassword().equals(password)){
+            em.remove(player);
+            transaction.commit();
+        }else{
+            transaction.rollback();
+            return new SuccessOrError("wrong password");
+        }
+
+        if(query.getResultList().size() == 0) {
+            return new SuccessOrError("user deleted");
+        }
+        transaction.rollback();
+        return new SuccessOrError("user NOT deleted");
     }
+
+    public SuccessOrError getPlayerByToken(String token){
+        startTransaction();
+
+        CriteriaBuilder uslovie = em.getCriteriaBuilder();
+        CriteriaQuery<Player> querry = uslovie.createQuery(Player.class);
+        Root<Player> tableName = querry.from(Player.class);
+        ParameterExpression<String> uslovieType = uslovie.parameter(String.class);
+
+        querry.select(tableName).where(uslovie.equal(tableName.get("token"), uslovieType));
+
+        TypedQuery<Player> query = em.createQuery(querry);
+        query.setParameter(uslovieType, token);
+        List<Player> result = query.getResultList();
+
+        if(result.size() == 0) {
+            transaction.rollback();
+            return new SuccessOrError("error token");
+        }
+        Player player = result.get(0);
+        return new SuccessOrError(player);
+    }
+
+    public void updatePlayer(Player player){
+        startTransaction();
+
+        em.refresh(player);
+        transaction.commit();
+    }
+
 
 
 //

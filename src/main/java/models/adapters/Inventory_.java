@@ -1,4 +1,4 @@
-package models.fromDbToGame;
+package models.adapters;
 
 public class Inventory_ {
 }

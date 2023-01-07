@@ -1,5 +1,7 @@
 package models.DBmodels;
 
+import map.ObstacleType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +14,13 @@ public class Obstacle implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String type;
+    ObstacleType type;
 
     public Obstacle() {
+    }
+
+    public Obstacle(ObstacleType type) {
+        this.type = type;
     }
 
     public int getId() {
@@ -25,11 +31,13 @@ public class Obstacle implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
+    public ObstacleType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ObstacleType type) {
         this.type = type;
     }
+
+
 }
